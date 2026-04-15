@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yolanda McLeod — Product Thinker</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terra: #C44A22;
+  --terra-light: #FAF0EC;
+  --terra-mid: #E8A598;
+  --dusty: #D85A30;
+  --sage: #7A9E6A;
+  --sage-light: #F0F5EC;
+  --sage-mid: #B5C9A0;
+  --cream: #FDF8F4;
+  --dark: #1C1410;
+  --mid: #5C4033;
+  --muted: #9E8070;
+  --border: #EDE0D8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(253,248,244,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600; color: var(--terra);
+  letter-spacing: 0.02em;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--terra); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 48px 80px 80px;
+  position: relative;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--terra);
+  background: var(--terra-light); border: 1px solid var(--terra-mid);
+  padding: 6px 14px; border-radius: 20px;
+  margin-bottom: 28px; width: fit-content;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 86px);
+  font-weight: 700; line-height: 1.0;
+  color: var(--dark); letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-name span { color: var(--terra); font-style: italic; }
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 400; font-style: italic;
+  color: var(--muted); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.7s 0.45s forwards;
+}
+.hero-desc {
+  font-size: 15px; line-height: 1.8; color: var(--mid);
+  max-width: 440px; margin-bottom: 40px;
+  font-weight: 300;
+  opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+}
+.hero-desc strong { font-weight: 600; color: var(--dark); }
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--terra); color: #fff;
+  padding: 13px 28px; border-radius: 6px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(196,74,34,0.3);
+}
+.btn-primary:hover { background: var(--dusty); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,74,34,0.35); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--terra);
+  padding: 13px 28px; border-radius: 6px;
+  border: 1.5px solid var(--terra);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--terra-light); transform: translateY(-2px); }
+
+.hero-location {
+  margin-top: 36px; display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--muted); font-weight: 500;
+  opacity: 0; animation: fadeUp 0.7s 0.75s forwards;
+}
+.hero-location::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--sage); border-radius: 50%;
+}
+
+.hero-right {
+  position: relative; overflow: hidden;
+  background: var(--terra-light);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent, transparent 30px,
+    rgba(196,74,34,0.04) 30px, rgba(196,74,34,0.04) 31px
+  );
+}
+.hero-visual {
+  position: relative; z-index: 2;
+  width: 380px; max-width: 90%;
+  opacity: 0; animation: fadeIn 1s 0.8s forwards;
+}
+.hero-card {
+  background: #fff; border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 24px 64px rgba(28,20,16,0.12);
+  border: 1px solid var(--border);
+}
+.hero-card-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 18px;
+}
+.hero-stat-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 20px;
+}
+.hero-stat {
+  background: var(--cream); border-radius: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+}
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 700;
+  color: var(--terra); line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-lbl {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.hero-tag-pill {
+  font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: 20px;
+  background: var(--sage-light); color: var(--sage);
+  border: 1px solid var(--sage-mid);
+}
+.hero-tag-pill.terra {
+  background: var(--terra-light); color: var(--terra);
+  border-color: var(--terra-mid);
+}
+
+/* ── SECTION BASE ── */
+section { padding: 100px 80px; }
+.section-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+  content: ''; flex: 0 0 40px; height: 1px; background: var(--terra-mid);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 700; line-height: 1.1;
+  color: var(--dark); letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.section-title em { color: var(--terra); font-style: italic; }
+.section-intro {
+  font-size: 15px; line-height: 1.8; color: var(--mid);
+  max-width: 560px; font-weight: 300;
+}
+
+/* ── ABOUT ── */
+.about { background: #fff; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 80px; align-items: center;
+  margin-top: 60px;
+}
+.about-left {}
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-style: italic;
+  color: var(--terra); line-height: 1.5;
+  border-left: 3px solid var(--terra-mid);
+  padding-left: 24px; margin-bottom: 32px;
+}
+.about-body {
+  font-size: 15px; line-height: 1.9; color: var(--mid);
+  font-weight: 300; margin-bottom: 20px;
+}
+.about-body strong { font-weight: 600; color: var(--dark); }
+.about-right {}
+.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.value-card {
+  background: var(--cream); border-radius: 12px;
+  padding: 20px; border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.value-card:hover { border-color: var(--terra-mid); transform: translateY(-2px); }
+.value-icon { font-size: 22px; margin-bottom: 10px; }
+.value-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--dark); margin-bottom: 6px;
+}
+.value-desc { font-size: 12px; line-height: 1.7; color: var(--muted); font-weight: 400; }
+
+/* ── WORK ── */
+.work { background: var(--cream); }
+.work-grid { display: flex; flex-direction: column; gap: 40px; margin-top: 60px; }
+
+.project-card {
+  background: #fff; border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  transition: all 0.25s;
+  box-shadow: 0 2px 20px rgba(28,20,16,0.05);
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(28,20,16,0.1); border-color: var(--terra-mid); }
+.project-card.reverse { grid-template-columns: 1.2fr 1fr; }
+.project-card.reverse .project-info { order: 2; }
+.project-card.reverse .project-visual { order: 1; }
+
+.project-info { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+.project-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px; font-weight: 700;
+  color: var(--border); line-height: 1;
+  margin-bottom: -10px;
+}
+.project-type {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 10px;
+}
+.project-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 700;
+  color: var(--dark); margin-bottom: 8px;
+  line-height: 1.1;
+}
+.project-tagline {
+  font-size: 14px; font-style: italic;
+  color: var(--muted); margin-bottom: 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+}
+.project-desc {
+  font-size: 14px; line-height: 1.8; color: var(--mid);
+  font-weight: 300; margin-bottom: 24px;
+}
+.project-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+.project-pill {
+  font-size: 11px; font-weight: 500;
+  padding: 4px 12px; border-radius: 20px;
+  background: var(--terra-light); color: var(--terra);
+  border: 1px solid var(--terra-mid);
+}
+.project-pill.sage {
+  background: var(--sage-light); color: var(--sage);
+  border-color: var(--sage-mid);
+}
+.project-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--terra);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: gap 0.2s;
+}
+.project-link:hover { gap: 12px; }
+
+.project-visual {
+  background: var(--terra-light);
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; min-height: 360px;
+  position: relative; overflow: hidden;
+}
+.project-visual.sage-bg { background: var(--sage-light); }
+.project-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 24px,
+    rgba(196,74,34,0.04) 24px, rgba(196,74,34,0.04) 25px
+  );
+}
+.project-visual.sage-bg::before {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 24px,
+    rgba(122,158,106,0.06) 24px, rgba(122,158,106,0.06) 25px
+  );
+}
+.project-mockup {
+  position: relative; z-index: 2;
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(28,20,16,0.14);
+  border: 1px solid var(--border);
+  overflow: hidden; width: 100%; max-width: 320px;
+}
+.mockup-bar {
+  background: var(--terra); padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.mockup-bar.sage { background: var(--sage); }
+.mockup-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+.mockup-title { font-size: 11px; font-weight: 600; color: #fff; margin-left: 4px; letter-spacing: 0.06em; }
+.mockup-body { padding: 16px; }
+.mockup-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 8px;
+  margin-bottom: 7px; background: var(--cream);
+  border: 1px solid var(--border);
+}
+.mockup-row-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.mockup-row-text { font-size: 11px; color: var(--mid); font-weight: 500; flex: 1; }
+.mockup-row-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 7px;
+  border-radius: 10px; letter-spacing: 0.06em;
+}
+.mockup-stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-top: 10px; }
+.mockup-stat {
+  background: var(--terra-light); border-radius: 8px;
+  padding: 9px 8px; text-align: center;
+  border: 1px solid var(--terra-mid);
+}
+.mockup-stat.sage-stat { background: var(--sage-light); border-color: var(--sage-mid); }
+.mockup-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--terra); }
+.mockup-stat.sage-stat .mockup-stat-num { color: var(--sage); }
+.mockup-stat-lbl { font-size: 8px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Excel mockup */
+.excel-mockup { width: 100%; max-width: 340px; }
+.excel-header {
+  background: var(--terra); padding: 10px 14px;
+  border-radius: 10px 10px 0 0;
+  font-size: 11px; font-weight: 600; color: #fff;
+  letter-spacing: 0.06em;
+}
+.excel-subheader {
+  background: var(--dusty); padding: 7px 14px;
+  display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr;
+  gap: 8px;
+}
+.excel-col-head { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 0.08em; text-transform: uppercase; }
+.excel-row {
+  display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr;
+  gap: 8px; padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.excel-row:nth-child(even) { background: var(--cream); }
+.excel-cell { font-size: 10px; color: var(--mid); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.excel-badge-cell { display: flex; }
+.excel-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--sage-light); color: var(--sage);
+  border: 1px solid var(--sage-mid);
+  white-space: nowrap;
+}
+
+/* ── SKILLS ── */
+.skills { background: var(--dark); }
+.skills .section-label { color: var(--terra-mid); }
+.skills .section-label::after { background: var(--terra); }
+.skills .section-title { color: #fff; }
+.skills .section-title em { color: var(--terra-mid); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.skill-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 28px;
+  transition: all 0.2s;
+}
+.skill-card:hover {
+  background: rgba(196,74,34,0.08);
+  border-color: rgba(196,74,34,0.3);
+  transform: translateY(-3px);
+}
+.skill-icon { font-size: 28px; margin-bottom: 14px; }
+.skill-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px; font-weight: 600; color: #fff;
+  margin-bottom: 8px;
+}
+.skill-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.5); font-weight: 300; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.skill-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+  padding: 3px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ── CONTACT ── */
+.contact {
+  background: var(--terra-light);
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.contact .section-title { max-width: 560px; }
+.contact .section-intro { margin: 0 auto 40px; }
+.contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.3);
+  text-align: center; padding: 28px;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.04em;
+}
+footer span { color: var(--terra-mid); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  
+  
+}
+
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { gap: 20px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 100px 24px 40px; }
+  .hero-right { min-height: 340px; padding: 40px 24px; }
+  section { padding: 70px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .project-card, .project-card.reverse { grid-template-columns: 1fr; }
+  .project-card.reverse .project-info { order: 1; }
+  .project-card.reverse .project-visual { order: 2; }
+  .project-visual { min-height: 260px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Yolanda McLeod</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Product Thinker & Builder</div>
+    <h1 class="hero-name">Yolanda<br><span>McLeod</span></h1>
+    <p class="hero-sub">I build things that matter.</p>
+    <p class="hero-desc">
+      I identify real problems, design solutions, and ship products — 
+      <strong>without waiting for permission.</strong> From a luxury rental database 
+      that solved a gap in NYC's market, to a full SaaS journaling app I designed, 
+      built, and launched — I create tools that make life and work better.
+    </p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See My Work →</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+    <div class="hero-location">South Florida · Open to Opportunities</div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">What I bring to the table</div>
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">2</div>
+            <div class="hero-stat-lbl">Products Built</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4K+</div>
+            <div class="hero-stat-lbl">Data Points Collected</div>
+          </div>
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag-pill terra">Product Thinking</span>
+          <span class="hero-tag-pill">User Research</span>
+          <span class="hero-tag-pill terra">Problem Solving</span>
+          <span class="hero-tag-pill">Iteration</span>
+          <span class="hero-tag-pill terra">Shipping</span>
+          <span class="hero-tag-pill">Data Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Builder by nature,<br><em>thinker by instinct</em></h2>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <p class="about-quote">"I don't want a job that I tolerate. I want work that I love."</p>
+      <p class="about-body">
+        I spent years doing work that didn't fit — tolerating jobs at great companies, 
+        feeling the gap between what I was doing and what I was capable of. 
+        <strong>Then I started building.</strong>
+      </p>
+      <p class="about-body">
+        What I discovered is that I've been a product thinker my entire life. 
+        Every time I saw a problem — a fragmented NYC rental market, a need for 
+        personal business accountability — I didn't just notice it. 
+        <strong>I built something to solve it.</strong>
+      </p>
+      <p class="about-body">
+        Now I'm channeling that into a career that fits who I actually am: 
+        someone who obsesses over how things work, how they could work better, 
+        and how to make them real.
+      </p>
+    </div>
+    <div class="about-right reveal">
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <div class="value-title">Problem First</div>
+          <div class="value-desc">I start with the real pain point, not the solution. Every product I've built came from a problem I felt personally.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔄</div>
+          <div class="value-title">Always Iterating</div>
+          <div class="value-desc">I don't stop at version one. I keep asking what else could make this better, more useful, more complete.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">I Ship Things</div>
+          <div class="value-desc">Ideas mean nothing without execution. I've built and launched real products that real people can use today.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💡</div>
+          <div class="value-title">User Empathy</div>
+          <div class="value-desc">My best products came from being my own user first — understanding the frustration deeply enough to solve it right.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-label">Selected Work</div>
+  <h2 class="section-title">Products I've <em>built</em></h2>
+  <p class="section-intro">Two real products, built from real problems, shipped into the real world.</p>
+
+  <div class="work-grid">
+
+    <!-- PROJECT 1: LOGGD -->
+    <div class="project-card reveal">
+      <div class="project-info">
+        <div class="project-number">01</div>
+        <div class="project-type">SaaS Product · Live</div>
+        <h3 class="project-title">Loggd</h3>
+        <p class="project-tagline">Your personal business journal</p>
+        <p class="project-desc">
+          Entrepreneurs have no dedicated tool to track the small daily actions that 
+          compound into growth. Generic apps don't categorize work quality, track time, 
+          or separate wins from busy work — so progress stays invisible and motivation dies.
+          I built Loggd to solve that. A full SaaS product with authentication, cloud sync, 
+          multi-business tracking, time logging, a wins journal, weekly reflections, 
+          and collaboration features. Designed, built, and shipped.
+        </p>
+        <div class="project-pills">
+          <span class="project-pill">Product Design</span>
+          <span class="project-pill">User Research</span>
+          <span class="project-pill sage">Firebase</span>
+          <span class="project-pill sage">Full Stack</span>
+          <span class="project-pill">Branding</span>
+        </div>
+        <a href="https://loggdapp.netlify.app" target="_blank" class="project-link">Visit Live App →</a>
+      </div>
+      <div class="project-visual">
+        <div class="project-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <span class="mockup-title">LOGGD — YOUR BUSINESS JOURNAL</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#C44A22"></div>
+              <span class="mockup-row-text">Reached out to 3 new clients</span>
+              <span class="mockup-row-badge" style="background:#FAF0EC;color:#C44A22;border:1px solid #E8A598">⚡ Action</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#7A9E6A"></div>
+              <span class="mockup-row-text">Closed first paid project</span>
+              <span class="mockup-row-badge" style="background:#F0F5EC;color:#7A9E6A;border:1px solid #B5C9A0">🏆 Win</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#4361ee"></div>
+              <span class="mockup-row-text">Built onboarding flow v2</span>
+              <span class="mockup-row-badge" style="background:#eef0fd;color:#4361ee;border:1px solid #c0c8f8">🔵 Deep</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#D85A30"></div>
+              <span class="mockup-row-text">Weekly reflection written</span>
+              <span class="mockup-row-badge" style="background:#FDF4F0;color:#D85A30;border:1px solid #F0B8A0">✅ Outcome</span>
+            </div>
+            <div class="mockup-stat-row">
+              <div class="mockup-stat">
+                <div class="mockup-stat-num">12</div>
+                <div class="mockup-stat-lbl">This Week</div>
+              </div>
+              <div class="mockup-stat">
+                <div class="mockup-stat-num">7</div>
+                <div class="mockup-stat-lbl">Streak</div>
+              </div>
+              <div class="mockup-stat sage-stat">
+                <div class="mockup-stat-num">84</div>
+                <div class="mockup-stat-lbl">Total</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: NYC DATABASE -->
+    <div class="project-card reverse reveal">
+      <div class="project-info">
+        <div class="project-number">02</div>
+        <div class="project-type">Data Product · Portfolio</div>
+        <h3 class="project-title">NYC Rental Intelligence Database</h3>
+        <p class="project-tagline">A personal MLS where none existed</p>
+        <p class="project-desc">
+          As a NYC rental agent, I was losing deals because there was no central 
+          system to track luxury buildings, availability, unit types, and guarantor 
+          policies across a fragmented market. So I built one. A searchable database 
+          of 4,000+ data points across three datasets — guarantor-accepted buildings, 
+          luxury inventory, and open rentals — organized to eliminate blind outreach 
+          and match clients to properties faster.
+        </p>
+        <div class="project-pills">
+          <span class="project-pill">Market Research</span>
+          <span class="project-pill">Data Architecture</span>
+          <span class="project-pill sage">Systems Design</span>
+          <span class="project-pill sage">Problem Solving</span>
+        </div>
+        <a href="#contact" class="project-link">Request to View →</a>
+      </div>
+      <div class="project-visual sage-bg">
+        <div class="excel-mockup">
+          <div class="excel-header">NYC RENTAL MARKET DATABASE — OVERVIEW</div>
+          <div class="excel-subheader">
+            <div class="excel-col-head">Building</div>
+            <div class="excel-col-head">Management Co.</div>
+            <div class="excel-col-head">Area</div>
+            <div class="excel-col-head">Guarantor</div>
+          </div>
+          <div class="excel-row">
+            <div class="excel-cell">The Ventura</div>
+            <div class="excel-cell">Rose Associates</div>
+            <div class="excel-cell">UES</div>
+            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
+          </div>
+          <div class="excel-row">
+            <div class="excel-cell">98 Riverside Dr</div>
+            <div class="excel-cell">Galil Management</div>
+            <div class="excel-cell">UWS</div>
+            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
+          </div>
+          <div class="excel-row">
+            <div class="excel-cell">Carnegie Mews</div>
+            <div class="excel-cell">Rose Associates</div>
+            <div class="excel-cell">Midtown W</div>
+            <div class="excel-badge-cell"><span class="excel-badge">Rhino</span></div>
+          </div>
+          <div class="excel-row">
+            <div class="excel-cell">The Larstrand</div>
+            <div class="excel-cell">Rose Associates</div>
+            <div class="excel-cell">UWS</div>
+            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
+          </div>
+          <div class="excel-row">
+            <div class="excel-cell">685 First Ave</div>
+            <div class="excel-cell">Vector Mgmt</div>
+            <div class="excel-cell">Murray Hill</div>
+            <div class="excel-badge-cell"><span class="excel-badge">Multiple</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">What I <em>bring</em></h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-title">Product Thinking</div>
+      <div class="skill-desc">I identify gaps, define problems clearly, and design solutions that actually solve them. I think in user flows, not just features.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Problem Definition</span>
+        <span class="skill-tag">User Research</span>
+        <span class="skill-tag">Roadmapping</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🏗️</div>
+      <div class="skill-title">Building & Shipping</div>
+      <div class="skill-desc">I don't just plan — I build. I've taken products from zero to live, iterating based on real needs and real feedback.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Prototyping</span>
+        <span class="skill-tag">Iteration</span>
+        <span class="skill-tag">Launch</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-title">Data & Systems</div>
+      <div class="skill-desc">I understand how to structure information so it becomes useful — from databases and spreadsheets to product analytics.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Database Design</span>
+        <span class="skill-tag">Data Architecture</span>
+        <span class="skill-tag">Excel / Sheets</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">✍️</div>
+      <div class="skill-title">Content & Communication</div>
+      <div class="skill-desc">From blog writing to product copy, I communicate clearly and persuasively — written and verbal.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Writing</span>
+        <span class="skill-tag">Storytelling</span>
+        <span class="skill-tag">Documentation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎬</div>
+      <div class="skill-title">Creative Production</div>
+      <div class="skill-desc">Video editing, content creation, and visual thinking — I understand how to craft experiences, not just products.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Video Editing</span>
+        <span class="skill-tag">Visual Design</span>
+        <span class="skill-tag">Branding</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-title">People & Process</div>
+      <div class="skill-desc">I've worked across industries and know how to communicate with stakeholders, manage priorities, and move teams forward.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Collaboration</span>
+        <span class="skill-tag">Client Relations</span>
+        <span class="skill-tag">Real Estate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label" style="justify-content:center">Let's Connect</div>
+  <h2 class="section-title reveal">Ready to build something <em>that matters</em></h2>
+  <p class="section-intro reveal">I'm actively exploring Product Management and Product Design roles in South Florida and remotely. If you're building something real and need someone who thinks in problems and ships in solutions — let's talk.</p>
+  <div class="contact-links reveal">
+    <a href="/cdn-cgi/l/email-protection#2d45484141426d5442414c43494c404e41484249034e4240" class="btn-primary">Send an Email →</a>
+    <a href="https://loggdapp.netlify.app" target="_blank" class="btn-secondary">See Loggd Live</a>
+  </div>
+</section>
+
+<footer>
+  Built with intention by <span>Yolanda McLeod</span> · South Florida · 2025
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i *
