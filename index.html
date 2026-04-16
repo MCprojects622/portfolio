@@ -886,7 +886,8 @@ footer span { color: var(--terra-mid); }
     <p style="font-size:16px;color:#7A4A38;line-height:1.7;margin-bottom:32px;font-family:'DM Sans',sans-serif">A guided vision journal for self-reflection, clarity, and personal growth. Enter your name and email and it is yours — no strings attached.</p>
     <div style="max-width:500px;margin:0 auto">
       <div style="background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(212,168,67,0.15);overflow:hidden;padding:32px;max-width:500px;margin:0 auto">
-        <form action="https://app.kit.com/forms/9335815/subscriptions" method="post" id="guidebook-form">
+        <iframe name="guidebook-frame" style="display:none"></iframe>
+        <form action="https://app.kit.com/forms/9335815/subscriptions" method="post" target="guidebook-frame" id="guidebook-form">
           <input type="hidden" name="utf8" value="✓">
           <div style="margin-bottom:14px">
             <input name="fields[first_name]" placeholder="Your first name" type="text" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
@@ -903,19 +904,13 @@ footer span { color: var(--terra-mid); }
       </div>
       <script>
         document.getElementById('guidebook-form').addEventListener('submit', function(e) {
-          e.preventDefault();
+          var emailVal = this.querySelector('[name="email_address"]').value;
+          if (!emailVal) return;
           var form = this;
-          var data = new FormData(form);
-          fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          }).then(function() {
+          setTimeout(function() {
             form.style.display = 'none';
             document.getElementById('guidebook-success').style.display = 'block';
-          }).catch(function() {
-            form.submit();
-          });
+          }, 800);
         });
       </script>
     </div>
@@ -995,8 +990,7 @@ footer span { color: var(--terra-mid); }
   <h2 class="section-title reveal">Ready to build something <em>that matters</em></h2>
   <p class="section-intro reveal">I'm actively exploring Product Management and Product Design roles in South Florida and remotely. If you're building something real and need someone who thinks in problems and ships in solutions — let's talk.</p>
   <div class="contact-links reveal">
-    <a href="/cdn-cgi/l/email-protection#2d45484141426d5442414c43494c404e41484249034e4240" class="btn-primary">Send an Email →</a>
-    <a href="https://loggd.yolandamcleod.com" target="_blank" class="btn-secondary">See Loggd Live</a>
+    <a href="mailto:hello@yolandamcleod.com" class="btn-primary">Send an Email →</a>
   </div>
 </section>
 
@@ -1004,7 +998,7 @@ footer span { color: var(--terra-mid); }
   Built with intention by <span>Yolanda McLeod</span> · South Florida · 2025
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
