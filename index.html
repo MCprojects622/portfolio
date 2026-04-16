@@ -19,6 +19,9 @@
   --mid: #5C4033;
   --muted: #9E8070;
   --border: #EDE0D8;
+  --gold: #D4A843;
+  --gold-light: #FEF8EC;
+  --gold-mid: #F0D49A;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -471,8 +474,13 @@ footer span { color: var(--terra-mid); }
 }
 
 .reveal {
-  
-  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
@@ -493,7 +501,6 @@ footer span { color: var(--terra-mid); }
   .values-grid { grid-template-columns: 1fr; }
 }
 </style>
-<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </head>
 <body>
 
@@ -532,7 +539,7 @@ footer span { color: var(--terra-mid); }
         <div class="hero-card-label">What I bring to the table</div>
         <div class="hero-stat-row">
           <div class="hero-stat">
-            <div class="hero-stat-num">2</div>
+            <div class="hero-stat-num">4</div>
             <div class="hero-stat-lbl">Products Built</div>
           </div>
           <div class="hero-stat">
@@ -858,7 +865,7 @@ footer span { color: var(--terra-mid); }
           <span class="project-pill sage">Published & Sold</span>
           <span class="project-pill sage">Gumroad</span>
         </div>
-        <p style="font-size:13px;color:#C090B8;font-style:italic;margin-top:8px">&#x2193; Get it free below — just share your email</p>
+        <p style="font-size:13px;color:#C090B8;font-style:italic;margin-top:8px">&#x2193; Get it free below — no strings attached</p>
       </div>
       <div class="project-visual sage-bg" style="background:linear-gradient(135deg,#FDF8EC,#FEF0FA)">
         <div style="position:relative;z-index:2;width:100%;max-width:280px;text-align:center">
@@ -886,17 +893,9 @@ footer span { color: var(--terra-mid); }
     <p style="font-size:16px;color:#7A4A38;line-height:1.7;margin-bottom:32px;font-family:'DM Sans',sans-serif">A guided vision journal for self-reflection, clarity, and personal growth. Enter your name and email and it is yours — no strings attached.</p>
     <div style="max-width:500px;margin:0 auto">
       <div style="background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(212,168,67,0.15);overflow:hidden;padding:32px;max-width:500px;margin:0 auto">
-        <form action="https://app.kit.com/forms/9335815/subscriptions" method="post">
-          <input type="hidden" name="utf8" value="✓">
-          <div style="margin-bottom:14px">
-            <input name="fields[first_name]" placeholder="Your first name" type="text" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
-          </div>
-          <div style="margin-bottom:20px">
-            <input name="email_address" placeholder="Your email address" required type="email" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
-          </div>
-          <button type="submit" style="width:100%;padding:15px;background:linear-gradient(135deg,#D4A843,#E8C060);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:0.02em">Get the Guidebook Free &#x1F338;</button>
-          <p style="margin-top:12px;font-size:12px;color:#C090B8;font-family:'DM Sans',sans-serif">We respect your privacy. Unsubscribe anytime.</p>
-        </form>
+        <a href="https://designyourdreamlife.gumroad.com/l/hqpvm" target="_blank" style="display:block;width:100%;padding:15px;background:linear-gradient(135deg,#D4A843,#E8C060);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:0.02em;text-decoration:none;text-align:center;box-sizing:border-box">Get the Guidebook Free &#x1F338;</a>
+        <p style="margin-top:12px;font-size:12px;color:#C090B8;font-family:'DM Sans',sans-serif;text-align:center">Free on Gumroad — no strings attached.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -975,11 +974,12 @@ footer span { color: var(--terra-mid); }
   <p class="section-intro reveal">I'm actively exploring Product Management and Product Design roles in South Florida and remotely. If you're building something real and need someone who thinks in problems and ships in solutions — let's talk.</p>
   <div class="contact-links reveal">
     <a href="mailto:hello@yolandamcleod.com" class="btn-primary">Send an Email →</a>
+    <a href="https://www.linkedin.com/in/yolanda-mcleod" target="_blank" class="btn-secondary">LinkedIn →</a>
   </div>
 </section>
 
 <footer>
-  Built with intention by <span>Yolanda McLeod</span> · South Florida · 2025
+  Built with intention by <span>Yolanda McLeod</span> · South Florida · 2026
 </footer>
 
 <script>
@@ -987,4 +987,9 @@ const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i *
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
