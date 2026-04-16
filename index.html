@@ -885,18 +885,39 @@ footer span { color: var(--terra-mid); }
     <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:#2C1810;margin-bottom:16px;line-height:1.2">Get <em style="color:#D4A843">Design Your Dream Life</em> free</h2>
     <p style="font-size:16px;color:#7A4A38;line-height:1.7;margin-bottom:32px;font-family:'DM Sans',sans-serif">A guided vision journal for self-reflection, clarity, and personal growth. Enter your name and email and it is yours — no strings attached.</p>
     <div style="max-width:500px;margin:0 auto">
-      <form action="https://app.kit.com/forms/9335815/subscriptions" style="background-color:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(212,168,67,0.15);overflow:hidden;" class="seva-form formkit-form" method="post" data-sv-form="9335815" data-uid="2508c0a47f" data-format="inline" data-version="5">
-        <div style="padding:32px">
+      <div style="background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(212,168,67,0.15);overflow:hidden;padding:32px;max-width:500px;margin:0 auto">
+        <form action="https://app.kit.com/forms/9335815/subscriptions" method="post" id="guidebook-form">
+          <input type="hidden" name="utf8" value="✓">
           <div style="margin-bottom:14px">
-            <input class="formkit-input" name="fields[first_name]" placeholder="Your first name" type="text" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
+            <input name="fields[first_name]" placeholder="Your first name" type="text" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
           </div>
           <div style="margin-bottom:20px">
-            <input class="formkit-input" name="email_address" placeholder="Your email address" required type="email" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
+            <input name="email_address" placeholder="Your email address" required type="email" style="width:100%;padding:14px 16px;border:2px solid #F0C8E8;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#2C1810;outline:none;box-sizing:border-box;background:#FDF5FF">
           </div>
           <button type="submit" style="width:100%;padding:15px;background:linear-gradient(135deg,#D4A843,#E8C060);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:0.02em">Get the Guidebook Free &#x1F338;</button>
           <p style="margin-top:12px;font-size:12px;color:#C090B8;font-family:'DM Sans',sans-serif">We respect your privacy. Unsubscribe anytime.</p>
-        </div>
-      </form>
+          <div id="guidebook-success" style="display:none;margin-top:16px;padding:14px;background:#E8FFF5;border-radius:10px;color:#00B87A;font-weight:700;font-size:14px;text-align:center">
+            &#x2705; Check your email to confirm and get your guidebook!
+          </div>
+        </form>
+      </div>
+      <script>
+        document.getElementById('guidebook-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          var form = this;
+          var data = new FormData(form);
+          fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          }).then(function() {
+            form.style.display = 'none';
+            document.getElementById('guidebook-success').style.display = 'block';
+          }).catch(function() {
+            form.submit();
+          });
+        });
+      </script>
     </div>
   </div>
 </section>
