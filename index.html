@@ -3,494 +3,413 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yolanda McLeod — Product Thinker</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Yolanda McLeod — Product Thinker & Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --terra: #C44A22;
-  --terra-light: #FAF0EC;
-  --terra-mid: #E8A598;
-  --dusty: #D85A30;
-  --sage: #7A9E6A;
-  --sage-light: #F0F5EC;
-  --sage-mid: #B5C9A0;
-  --cream: #FDF8F4;
-  --dark: #1C1410;
-  --mid: #5C4033;
-  --muted: #9E8070;
-  --border: #EDE0D8;
-  --gold: #D4A843;
-  --gold-light: #FEF8EC;
-  --gold-mid: #F0D49A;
+  --pink: #FF3D7F;
+  --pink-light: #FFF0F7;
+  --pink-mid: #FFB3D0;
+  --purple: #7C3AED;
+  --purple-light: #F3F0FF;
+  --purple-mid: #C4B5F4;
+  --teal: #059A72;
+  --teal-light: #F0FFFC;
+  --teal-mid: #80E8CC;
+  --yellow: #FFD60A;
+  --orange: #FB8500;
+  --orange-light: #FFF4E8;
+  --cream: #FFF9F0;
+  --dark: #1A0A2E;
+  --mid: #4A3060;
+  --muted: #9B8AB0;
+  --border: #EDE0FF;
+  --white: #ffffff;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--dark);
-  overflow-x: hidden;
-}
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(253,248,244,0.92);
+  padding: 16px 48px;
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--pink);
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600; color: var(--terra);
-  letter-spacing: 0.02em;
+  font-size: 22px; font-weight: 700; color: var(--pink);
 }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--muted);
-  text-decoration: none; letter-spacing: 0.04em;
-  transition: color 0.2s;
+  font-size: 13px; font-weight: 600; color: var(--purple);
+  text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--terra); }
+.nav-links a:hover { color: var(--pink); }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--pink); color: #fff;
+  padding: 13px 28px; border-radius: 50px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(255,61,127,0.4);
+}
+.btn-primary:hover { background: #e0005f; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,61,127,0.45); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--purple);
+  border: 2.5px solid var(--purple);
+  padding: 11px 24px; border-radius: 50px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--purple-light); transform: translateY(-2px); }
+.btn-outline-pink {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--pink);
+  border: 2.5px solid var(--pink);
+  padding: 11px 24px; border-radius: 50px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-outline-pink:hover { background: var(--pink-light); transform: translateY(-2px); }
 
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 80px;
-  overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 72px;
+  background: linear-gradient(135deg, #FFF0F7 0%, #FFF9F0 50%, #F3F0FF 100%);
+  position: relative; overflow: hidden;
+}
+.hero-flowers {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
 }
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 48px 80px 80px;
-  position: relative;
+  padding: 80px 48px 80px 72px;
+  position: relative; z-index: 2;
 }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--terra);
-  background: var(--terra-light); border: 1px solid var(--terra-mid);
-  padding: 6px 14px; border-radius: 20px;
-  margin-bottom: 28px; width: fit-content;
-  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  background: var(--pink); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 7px 18px; border-radius: 30px;
+  margin-bottom: 24px; width: fit-content;
 }
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 6vw, 86px);
+  font-size: clamp(52px, 6vw, 82px);
   font-weight: 700; line-height: 1.0;
-  color: var(--dark); letter-spacing: -0.02em;
-  margin-bottom: 6px;
-  opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+  color: var(--dark); letter-spacing: -0.02em; margin-bottom: 6px;
 }
-.hero-name span { color: var(--terra); font-style: italic; }
+.hero-name span { color: var(--pink); font-style: italic; }
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 2.8vw, 34px);
-  font-weight: 400; font-style: italic;
-  color: var(--muted); margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 0.7s 0.45s forwards;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-style: italic; color: var(--purple); margin-bottom: 24px;
 }
 .hero-desc {
   font-size: 15px; line-height: 1.8; color: var(--mid);
-  max-width: 440px; margin-bottom: 40px;
-  font-weight: 300;
-  opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+  max-width: 440px; margin-bottom: 36px; font-weight: 300;
 }
-.hero-desc strong { font-weight: 600; color: var(--dark); }
-.hero-ctas {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--terra); color: #fff;
-  padding: 13px 28px; border-radius: 6px;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
-  text-decoration: none; transition: all 0.2s;
-  box-shadow: 0 4px 20px rgba(196,74,34,0.3);
-}
-.btn-primary:hover { background: var(--dusty); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,74,34,0.35); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: var(--terra);
-  padding: 13px 28px; border-radius: 6px;
-  border: 1.5px solid var(--terra);
-  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
-  text-decoration: none; transition: all 0.2s;
-}
-.btn-secondary:hover { background: var(--terra-light); transform: translateY(-2px); }
-
+.hero-desc strong { font-weight: 700; color: var(--dark); }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
 .hero-location {
-  margin-top: 36px; display: flex; align-items: center; gap: 8px;
-  font-size: 12px; color: var(--muted); font-weight: 500;
-  opacity: 0; animation: fadeUp 0.7s 0.75s forwards;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--muted); font-weight: 600;
 }
 .hero-location::before {
-  content: ''; width: 6px; height: 6px;
-  background: var(--sage); border-radius: 50%;
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal); flex-shrink: 0;
 }
-
 .hero-right {
-  position: relative; overflow: hidden;
-  background: var(--terra-light);
   display: flex; align-items: center; justify-content: center;
-}
-.hero-right::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent, transparent 30px,
-    rgba(196,74,34,0.04) 30px, rgba(196,74,34,0.04) 31px
-  );
-}
-.hero-visual {
-  position: relative; z-index: 2;
-  width: 380px; max-width: 90%;
-  opacity: 0; animation: fadeIn 1s 0.8s forwards;
+  padding: 40px; position: relative; z-index: 2;
 }
 .hero-card {
-  background: #fff; border-radius: 16px;
-  padding: 28px 32px;
-  box-shadow: 0 24px 64px rgba(28,20,16,0.12);
-  border: 1px solid var(--border);
+  background: #fff; border-radius: 24px; padding: 32px; width: 360px;
+  box-shadow: 0 0 0 3px var(--pink), 7px 7px 0 var(--purple);
+  position: relative;
 }
 .hero-card-label {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 18px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
 }
-.hero-stat-row {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 14px; margin-bottom: 20px;
-}
+.hero-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
 .hero-stat {
-  background: var(--cream); border-radius: 10px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
+  border-radius: 14px; padding: 14px; text-align: center;
 }
+.hero-stat.pink { background: var(--pink-light); border: 2px solid var(--pink-mid); }
+.hero-stat.purple { background: var(--purple-light); border: 2px solid var(--purple-mid); }
+.hero-stat.yellow { background: #FFFBF0; border: 2px solid #FFD60A; }
+.hero-stat.teal { background: var(--teal-light); border: 2px solid var(--teal-mid); }
 .hero-stat-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px; font-weight: 700;
-  color: var(--terra); line-height: 1;
-  margin-bottom: 4px;
+  font-size: 34px; font-weight: 700; line-height: 1; margin-bottom: 4px;
 }
-.hero-stat-lbl {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--muted);
+.hero-stat-num.pink { color: var(--pink); }
+.hero-stat-num.purple { color: var(--purple); }
+.hero-stat-num.yellow { color: #C89900; }
+.hero-stat-num.teal { color: var(--teal); }
+.hero-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hero-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.hero-pill {
+  font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
 }
-.hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.hero-tag-pill {
-  font-size: 11px; font-weight: 500;
-  padding: 5px 12px; border-radius: 20px;
-  background: var(--sage-light); color: var(--sage);
-  border: 1px solid var(--sage-mid);
-}
-.hero-tag-pill.terra {
-  background: var(--terra-light); color: var(--terra);
-  border-color: var(--terra-mid);
-}
+.hero-pill.pink { background: var(--pink-light); color: var(--pink); border: 1.5px solid var(--pink-mid); }
+.hero-pill.purple { background: var(--purple-light); color: var(--purple); border: 1.5px solid var(--purple-mid); }
+.hero-pill.teal { background: var(--teal-light); color: var(--teal); border: 1.5px solid var(--teal-mid); }
 
-/* ── SECTION BASE ── */
+/* ── SECTIONS BASE ── */
 section { padding: 100px 80px; }
 .section-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--terra);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--pink);
+  margin-bottom: 16px;
 }
-.section-label::after {
-  content: ''; flex: 0 0 40px; height: 1px; background: var(--terra-mid);
-}
+.section-label::after { content: ''; width: 40px; height: 2px; background: var(--pink-mid); border-radius: 2px; }
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(36px, 4vw, 54px);
   font-weight: 700; line-height: 1.1;
-  color: var(--dark); letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  color: var(--dark); letter-spacing: -0.02em; margin-bottom: 16px;
 }
-.section-title em { color: var(--terra); font-style: italic; }
-.section-intro {
-  font-size: 15px; line-height: 1.8; color: var(--mid);
-  max-width: 560px; font-weight: 300;
-}
+.section-title em { color: var(--pink); font-style: italic; }
+.section-intro { font-size: 15px; line-height: 1.8; color: var(--mid); max-width: 560px; font-weight: 300; }
 
 /* ── ABOUT ── */
-.about { background: #fff; }
+.about { background: #fff; position: relative; overflow: hidden; }
 .about-grid {
   display: grid; grid-template-columns: 1fr 1.4fr;
-  gap: 80px; align-items: center;
-  margin-top: 60px;
+  gap: 80px; align-items: start; margin-top: 60px;
 }
-.about-left {}
 .about-quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px; font-style: italic;
-  color: var(--terra); line-height: 1.5;
-  border-left: 3px solid var(--terra-mid);
-  padding-left: 24px; margin-bottom: 32px;
+  font-size: 26px; font-style: italic; color: var(--pink); line-height: 1.5;
+  border-left: 4px solid var(--pink); padding-left: 24px; margin-bottom: 32px;
 }
-.about-body {
-  font-size: 15px; line-height: 1.9; color: var(--mid);
-  font-weight: 300; margin-bottom: 20px;
-}
-.about-body strong { font-weight: 600; color: var(--dark); }
-.about-right {}
+.about-body { font-size: 15px; line-height: 1.9; color: var(--mid); font-weight: 300; margin-bottom: 18px; }
+.about-body strong { font-weight: 700; color: var(--dark); }
 .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .value-card {
-  background: var(--cream); border-radius: 12px;
-  padding: 20px; border: 1px solid var(--border);
-  transition: all 0.2s;
+  background: var(--cream); border-radius: 16px; padding: 22px;
+  border: 2px solid var(--border); transition: all 0.2s;
 }
-.value-card:hover { border-color: var(--terra-mid); transform: translateY(-2px); }
-.value-icon { font-size: 22px; margin-bottom: 10px; }
+.value-card:hover { border-color: var(--pink-mid); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,61,127,0.1); }
+.value-icon { font-size: 24px; margin-bottom: 10px; }
 .value-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 17px; font-weight: 600;
-  color: var(--dark); margin-bottom: 6px;
+  font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 6px;
 }
-.value-desc { font-size: 12px; line-height: 1.7; color: var(--muted); font-weight: 400; }
+.value-desc { font-size: 12px; line-height: 1.7; color: var(--muted); }
 
 /* ── WORK ── */
 .work { background: var(--cream); }
 .work-grid { display: flex; flex-direction: column; gap: 40px; margin-top: 60px; }
-
 .project-card {
-  background: #fff; border-radius: 16px;
-  border: 1px solid var(--border);
-  overflow: hidden;
+  background: #fff; border-radius: 20px;
+  border: 2px solid var(--border); overflow: hidden;
   display: grid; grid-template-columns: 1fr 1.2fr;
   transition: all 0.25s;
-  box-shadow: 0 2px 20px rgba(28,20,16,0.05);
+  box-shadow: 0 2px 20px rgba(124,58,237,0.06);
 }
-.project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(28,20,16,0.1); border-color: var(--terra-mid); }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(124,58,237,0.12); border-color: var(--pink-mid); }
 .project-card.reverse { grid-template-columns: 1.2fr 1fr; }
 .project-card.reverse .project-info { order: 2; }
 .project-card.reverse .project-visual { order: 1; }
-
 .project-info { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
 .project-number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 72px; font-weight: 700;
-  color: var(--border); line-height: 1;
-  margin-bottom: -10px;
+  font-size: 72px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: -10px;
 }
-.project-type {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--terra);
-  margin-bottom: 10px;
-}
-.project-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; font-weight: 700;
-  color: var(--dark); margin-bottom: 8px;
-  line-height: 1.1;
-}
-.project-tagline {
-  font-size: 14px; font-style: italic;
-  color: var(--muted); margin-bottom: 18px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-}
-.project-desc {
-  font-size: 14px; line-height: 1.8; color: var(--mid);
-  font-weight: 300; margin-bottom: 24px;
-}
+.project-type { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink); margin-bottom: 10px; }
+.project-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.1; }
+.project-tagline { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--muted); margin-bottom: 18px; }
+.project-desc { font-size: 14px; line-height: 1.8; color: var(--mid); font-weight: 300; margin-bottom: 24px; }
 .project-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
 .project-pill {
-  font-size: 11px; font-weight: 500;
-  padding: 4px 12px; border-radius: 20px;
-  background: var(--terra-light); color: var(--terra);
-  border: 1px solid var(--terra-mid);
+  font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+  background: var(--pink-light); color: var(--pink); border: 1.5px solid var(--pink-mid);
 }
-.project-pill.sage {
-  background: var(--sage-light); color: var(--sage);
-  border-color: var(--sage-mid);
-}
+.project-pill.purple { background: var(--purple-light); color: var(--purple); border-color: var(--purple-mid); }
+.project-pill.teal { background: var(--teal-light); color: var(--teal); border-color: var(--teal-mid); }
+.project-pill.yellow { background: #FFFBF0; color: #C89900; border-color: #FFD60A; }
 .project-link {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 600; color: var(--terra);
-  text-decoration: none; letter-spacing: 0.02em;
-  transition: gap 0.2s;
+  font-size: 13px; font-weight: 700; color: var(--pink);
+  text-decoration: none; letter-spacing: 0.02em; transition: gap 0.2s;
 }
-.project-link:hover { gap: 12px; }
-
+.project-link:hover { gap: 14px; }
 .project-visual {
-  background: var(--terra-light);
+  background: var(--pink-light);
   display: flex; align-items: center; justify-content: center;
-  padding: 40px; min-height: 360px;
-  position: relative; overflow: hidden;
+  padding: 40px; min-height: 360px; position: relative; overflow: hidden;
 }
-.project-visual.sage-bg { background: var(--sage-light); }
+.project-visual.purple-bg { background: var(--purple-light); }
+.project-visual.teal-bg { background: var(--teal-light); }
+.project-visual.yellow-bg { background: #FFFBF0; }
 .project-visual::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent, transparent 24px,
-    rgba(196,74,34,0.04) 24px, rgba(196,74,34,0.04) 25px
-  );
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,61,127,0.04) 24px, rgba(255,61,127,0.04) 25px);
 }
-.project-visual.sage-bg::before {
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent, transparent 24px,
-    rgba(122,158,106,0.06) 24px, rgba(122,158,106,0.06) 25px
-  );
-}
+.project-visual.purple-bg::before { background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(124,58,237,0.05) 24px, rgba(124,58,237,0.05) 25px); }
+.project-visual.teal-bg::before { background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(5,154,114,0.05) 24px, rgba(5,154,114,0.05) 25px); }
 .project-mockup {
-  position: relative; z-index: 2;
-  background: #fff; border-radius: 12px;
-  box-shadow: 0 16px 48px rgba(28,20,16,0.14);
-  border: 1px solid var(--border);
+  position: relative; z-index: 2; background: #fff; border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(124,58,237,0.14); border: 2px solid var(--border);
   overflow: hidden; width: 100%; max-width: 320px;
 }
 .mockup-bar {
-  background: var(--terra); padding: 10px 16px;
+  background: var(--purple); padding: 10px 16px;
   display: flex; align-items: center; gap: 8px;
 }
-.mockup-bar.sage { background: var(--sage); }
-.mockup-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); }
-.mockup-title { font-size: 11px; font-weight: 600; color: #fff; margin-left: 4px; letter-spacing: 0.06em; }
+.mockup-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.45); }
+.mockup-title { font-size: 11px; font-weight: 700; color: #fff; margin-left: 4px; letter-spacing: 0.06em; }
 .mockup-body { padding: 16px; }
 .mockup-row {
   display: flex; align-items: center; gap: 10px;
-  padding: 9px 12px; border-radius: 8px;
-  margin-bottom: 7px; background: var(--cream);
-  border: 1px solid var(--border);
+  padding: 9px 12px; border-radius: 10px; margin-bottom: 7px;
+  background: var(--cream); border: 1.5px solid var(--border);
 }
 .mockup-row-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .mockup-row-text { font-size: 11px; color: var(--mid); font-weight: 500; flex: 1; }
-.mockup-row-badge {
-  font-size: 9px; font-weight: 700; padding: 2px 7px;
-  border-radius: 10px; letter-spacing: 0.06em;
-}
+.mockup-row-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.06em; }
 .mockup-stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-top: 10px; }
-.mockup-stat {
-  background: var(--terra-light); border-radius: 8px;
-  padding: 9px 8px; text-align: center;
-  border: 1px solid var(--terra-mid);
-}
-.mockup-stat.sage-stat { background: var(--sage-light); border-color: var(--sage-mid); }
-.mockup-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--terra); }
-.mockup-stat.sage-stat .mockup-stat-num { color: var(--sage); }
-.mockup-stat-lbl { font-size: 8px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-
-/* Excel mockup */
-.excel-mockup { width: 100%; max-width: 340px; }
-.excel-header {
-  background: var(--terra); padding: 10px 14px;
-  border-radius: 10px 10px 0 0;
-  font-size: 11px; font-weight: 600; color: #fff;
-  letter-spacing: 0.06em;
-}
-.excel-subheader {
-  background: var(--dusty); padding: 7px 14px;
-  display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr;
-  gap: 8px;
-}
+.mockup-stat { background: var(--purple-light); border-radius: 10px; padding: 9px 8px; text-align: center; border: 1.5px solid var(--purple-mid); }
+.mockup-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--purple); }
+.mockup-stat-lbl { font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.excel-mockup { width: 100%; max-width: 340px; position: relative; z-index: 2; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 40px rgba(5,154,114,0.15); }
+.excel-header { background: var(--teal); padding: 10px 14px; font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.06em; }
+.excel-subheader { background: #04705A; padding: 7px 14px; display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr; gap: 8px; }
 .excel-col-head { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 0.08em; text-transform: uppercase; }
-.excel-row {
-  display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr;
-  gap: 8px; padding: 8px 14px;
-  border-bottom: 1px solid var(--border);
-  background: #fff;
-}
-.excel-row:nth-child(even) { background: var(--cream); }
+.excel-row { display: grid; grid-template-columns: 2fr 1.5fr 1fr 1.2fr; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--border); background: #fff; }
+.excel-row:nth-child(even) { background: var(--teal-light); }
 .excel-cell { font-size: 10px; color: var(--mid); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.excel-badge-cell { display: flex; }
-.excel-badge {
-  font-size: 9px; font-weight: 700; padding: 2px 7px;
-  border-radius: 10px;
-  background: var(--sage-light); color: var(--sage);
-  border: 1px solid var(--sage-mid);
-  white-space: nowrap;
+.excel-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 10px; background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-mid); }
+
+/* ── GUIDEBOOK SECTION ── */
+.guidebook-section {
+  background: linear-gradient(135deg, #FFF0F7, #F3F0FF);
+  padding: 80px 24px; text-align: center;
+  position: relative; overflow: hidden;
+}
+
+/* ── TIMELINE ── */
+.timeline-section {
+  background: var(--dark); padding: 100px 80px;
+  position: relative; overflow: hidden;
+}
+.timeline-section .section-label { color: var(--pink-mid); }
+.timeline-section .section-label::after { background: var(--pink); }
+.timeline-section .section-title { color: #fff; }
+.timeline-section .section-title em { color: var(--yellow); }
+.timeline-section .section-intro { color: rgba(255,255,255,0.55); }
+.timeline { position: relative; margin-top: 60px; max-width: 800px; }
+.timeline::before {
+  content: ''; position: absolute; left: 18px; top: 0; bottom: 0;
+  width: 3px; background: linear-gradient(180deg, var(--pink), var(--purple), var(--teal));
+  border-radius: 3px;
+}
+.timeline-item {
+  display: flex; gap: 40px; margin-bottom: 44px;
+  position: relative; padding-left: 58px;
+}
+.timeline-dot {
+  position: absolute; left: 7px; top: 4px;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+  border: 3px solid var(--dark);
+}
+.timeline-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  margin-bottom: 6px; opacity: 0.7;
+}
+.timeline-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 700; color: #fff;
+  margin-bottom: 4px; line-height: 1.2;
+}
+.timeline-sub {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 10px; opacity: 0.8;
+}
+.timeline-desc {
+  font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,0.5);
+  font-weight: 300;
+}
+.timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.timeline-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 3px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 /* ── SKILLS ── */
-.skills { background: var(--dark); }
-.skills .section-label { color: var(--terra-mid); }
-.skills .section-label::after { background: var(--terra); }
+.skills { background: var(--dark); position: relative; overflow: hidden; }
+.skills .section-label { color: var(--pink-mid); }
+.skills .section-label::after { background: var(--pink); }
 .skills .section-title { color: #fff; }
-.skills .section-title em { color: var(--terra-mid); }
-.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.skills .section-title em { color: var(--yellow); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
 .skill-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px; padding: 28px;
-  transition: all 0.2s;
+  background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 18px; padding: 28px; transition: all 0.2s;
 }
-.skill-card:hover {
-  background: rgba(196,74,34,0.08);
-  border-color: rgba(196,74,34,0.3);
-  transform: translateY(-3px);
-}
+.skill-card:hover { background: rgba(255,61,127,0.1); border-color: rgba(255,61,127,0.4); transform: translateY(-3px); }
 .skill-icon { font-size: 28px; margin-bottom: 14px; }
-.skill-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px; font-weight: 600; color: #fff;
-  margin-bottom: 8px;
-}
-.skill-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.5); font-weight: 300; }
+.skill-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.skill-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.55); font-weight: 300; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
 .skill-tag {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
   padding: 3px 10px; border-radius: 20px;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 /* ── CONTACT ── */
 .contact {
-  background: var(--terra-light);
-  text-align: center;
-  display: flex; flex-direction: column; align-items: center;
+  background: linear-gradient(135deg, var(--pink-light) 0%, var(--purple-light) 100%);
+  text-align: center; display: flex; flex-direction: column; align-items: center;
+  position: relative; overflow: hidden;
 }
+.contact .section-label { justify-content: center; }
+.contact .section-label::after { display: none; }
 .contact .section-title { max-width: 560px; }
 .contact .section-intro { margin: 0 auto 40px; }
 .contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--dark); color: rgba(255,255,255,0.3);
+  background: var(--dark); color: rgba(255,255,255,0.35);
   text-align: center; padding: 28px;
-  font-size: 12px; font-weight: 400; letter-spacing: 0.04em;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
 }
-footer span { color: var(--terra-mid); }
+footer span { color: var(--pink-mid); }
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .nav-links { gap: 20px; }
+  nav { padding: 14px 20px; }
+  .nav-links { gap: 18px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 100px 24px 40px; }
-  .hero-right { min-height: 340px; padding: 40px 24px; }
+  .hero-right { padding: 40px 24px; }
   section { padding: 70px 24px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .project-card, .project-card.reverse { grid-template-columns: 1fr; }
@@ -504,11 +423,13 @@ footer span { color: var(--terra-mid); }
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Yolanda McLeod</div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#work">Work</a>
+    <a href="#history">Timeline</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </div>
@@ -516,46 +437,141 @@ footer span { color: var(--terra-mid); }
 
 <!-- HERO -->
 <section class="hero">
+  <!-- Flowers SVG background -->
+  <svg class="hero-flowers" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Big pink flower top right -->
+    <g transform="translate(1150, 100)">
+      <ellipse cx="0" cy="-38" rx="15" ry="26" fill="#FF6B9D" opacity="0.88"/>
+      <ellipse cx="0" cy="38" rx="15" ry="26" fill="#FF6B9D" opacity="0.88"/>
+      <ellipse cx="-38" cy="0" rx="26" ry="15" fill="#FF6B9D" opacity="0.88"/>
+      <ellipse cx="38" cy="0" rx="26" ry="15" fill="#FF6B9D" opacity="0.88"/>
+      <ellipse cx="-27" cy="-27" rx="15" ry="26" fill="#FFB3D0" opacity="0.8" transform="rotate(45 -27 -27)"/>
+      <ellipse cx="27" cy="-27" rx="15" ry="26" fill="#FFB3D0" opacity="0.8" transform="rotate(-45 27 -27)"/>
+      <ellipse cx="-27" cy="27" rx="15" ry="26" fill="#FFB3D0" opacity="0.8" transform="rotate(-45 -27 27)"/>
+      <ellipse cx="27" cy="27" rx="15" ry="26" fill="#FFB3D0" opacity="0.8" transform="rotate(45 27 27)"/>
+      <circle cx="0" cy="0" r="16" fill="#FFD60A"/>
+      <circle cx="0" cy="0" r="8" fill="#FB8500"/>
+      <line x1="0" y1="65" x2="0" y2="130" stroke="#06D6A0" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="-18" cy="105" rx="14" ry="8" fill="#06D6A0" opacity="0.7" transform="rotate(-30 -18 105)"/>
+    </g>
+    <!-- Purple flower top left -->
+    <g transform="translate(130, 80)">
+      <ellipse cx="0" cy="-28" rx="11" ry="19" fill="#8B5CF6" opacity="0.85"/>
+      <ellipse cx="0" cy="28" rx="11" ry="19" fill="#8B5CF6" opacity="0.85"/>
+      <ellipse cx="-28" cy="0" rx="19" ry="11" fill="#8B5CF6" opacity="0.85"/>
+      <ellipse cx="28" cy="0" rx="19" ry="11" fill="#8B5CF6" opacity="0.85"/>
+      <ellipse cx="-20" cy="-20" rx="11" ry="19" fill="#C4B5F4" opacity="0.78" transform="rotate(45 -20 -20)"/>
+      <ellipse cx="20" cy="-20" rx="11" ry="19" fill="#C4B5F4" opacity="0.78" transform="rotate(-45 20 -20)"/>
+      <ellipse cx="-20" cy="20" rx="11" ry="19" fill="#C4B5F4" opacity="0.78" transform="rotate(-45 -20 20)"/>
+      <ellipse cx="20" cy="20" rx="11" ry="19" fill="#C4B5F4" opacity="0.78" transform="rotate(45 20 20)"/>
+      <circle cx="0" cy="0" r="11" fill="#FFD60A"/>
+      <circle cx="0" cy="0" r="5" fill="#FB8500"/>
+      <line x1="0" y1="48" x2="0" y2="100" stroke="#06D6A0" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- Teal flower bottom left -->
+    <g transform="translate(70, 760)">
+      <ellipse cx="0" cy="-32" rx="13" ry="22" fill="#06D6A0" opacity="0.85"/>
+      <ellipse cx="0" cy="32" rx="13" ry="22" fill="#06D6A0" opacity="0.85"/>
+      <ellipse cx="-32" cy="0" rx="22" ry="13" fill="#06D6A0" opacity="0.85"/>
+      <ellipse cx="32" cy="0" rx="22" ry="13" fill="#06D6A0" opacity="0.85"/>
+      <ellipse cx="-23" cy="-23" rx="13" ry="22" fill="#5EEAD4" opacity="0.78" transform="rotate(45 -23 -23)"/>
+      <ellipse cx="23" cy="-23" rx="13" ry="22" fill="#5EEAD4" opacity="0.78" transform="rotate(-45 23 -23)"/>
+      <ellipse cx="-23" cy="23" rx="13" ry="22" fill="#5EEAD4" opacity="0.78" transform="rotate(-45 -23 23)"/>
+      <ellipse cx="23" cy="23" rx="13" ry="22" fill="#5EEAD4" opacity="0.78" transform="rotate(45 23 23)"/>
+      <circle cx="0" cy="0" r="13" fill="#FFD60A"/>
+      <circle cx="0" cy="0" r="6" fill="#FB8500"/>
+    </g>
+    <!-- Orange flower bottom right -->
+    <g transform="translate(1280, 820)">
+      <ellipse cx="0" cy="-26" rx="11" ry="18" fill="#FB8500" opacity="0.85"/>
+      <ellipse cx="0" cy="26" rx="11" ry="18" fill="#FB8500" opacity="0.85"/>
+      <ellipse cx="-26" cy="0" rx="18" ry="11" fill="#FB8500" opacity="0.85"/>
+      <ellipse cx="26" cy="0" rx="18" ry="11" fill="#FB8500" opacity="0.85"/>
+      <ellipse cx="-18" cy="-18" rx="11" ry="18" fill="#FDBA74" opacity="0.78" transform="rotate(45 -18 -18)"/>
+      <ellipse cx="18" cy="-18" rx="11" ry="18" fill="#FDBA74" opacity="0.78" transform="rotate(-45 18 -18)"/>
+      <ellipse cx="-18" cy="18" rx="11" ry="18" fill="#FDBA74" opacity="0.78" transform="rotate(-45 -18 18)"/>
+      <ellipse cx="18" cy="18" rx="11" ry="18" fill="#FDBA74" opacity="0.78" transform="rotate(45 18 18)"/>
+      <circle cx="0" cy="0" r="11" fill="#fff"/>
+      <circle cx="0" cy="0" r="5" fill="#FFD60A"/>
+    </g>
+    <!-- Small accent flowers -->
+    <g transform="translate(560, 40)">
+      <ellipse cx="0" cy="-16" rx="7" ry="12" fill="#FF3D7F" opacity="0.7"/>
+      <ellipse cx="0" cy="16" rx="7" ry="12" fill="#FF3D7F" opacity="0.7"/>
+      <ellipse cx="-16" cy="0" rx="12" ry="7" fill="#FF3D7F" opacity="0.7"/>
+      <ellipse cx="16" cy="0" rx="12" ry="7" fill="#FF3D7F" opacity="0.7"/>
+      <circle cx="0" cy="0" r="7" fill="#FFD60A"/>
+    </g>
+    <g transform="translate(760, 850)">
+      <ellipse cx="0" cy="-16" rx="7" ry="12" fill="#8B5CF6" opacity="0.65"/>
+      <ellipse cx="0" cy="16" rx="7" ry="12" fill="#8B5CF6" opacity="0.65"/>
+      <ellipse cx="-16" cy="0" rx="12" ry="7" fill="#8B5CF6" opacity="0.65"/>
+      <ellipse cx="16" cy="0" rx="12" ry="7" fill="#8B5CF6" opacity="0.65"/>
+      <circle cx="0" cy="0" r="7" fill="#FFD60A"/>
+    </g>
+    <g transform="translate(950, 870)">
+      <ellipse cx="0" cy="-13" rx="6" ry="10" fill="#FF6B9D" opacity="0.6"/>
+      <ellipse cx="0" cy="13" rx="6" ry="10" fill="#FF6B9D" opacity="0.6"/>
+      <ellipse cx="-13" cy="0" rx="10" ry="6" fill="#FF6B9D" opacity="0.6"/>
+      <ellipse cx="13" cy="0" rx="10" ry="6" fill="#FF6B9D" opacity="0.6"/>
+      <circle cx="0" cy="0" r="6" fill="#FFD60A"/>
+    </g>
+    <!-- Floating dots -->
+    <circle cx="320" cy="50" r="5" fill="#FF6B9D" opacity="0.45"/>
+    <circle cx="880" cy="25" r="4" fill="#8B5CF6" opacity="0.4"/>
+    <circle cx="1380" cy="450" r="6" fill="#06D6A0" opacity="0.45"/>
+    <circle cx="30" cy="430" r="5" fill="#FFD60A" opacity="0.55"/>
+    <circle cx="460" cy="870" r="4" fill="#FF6B9D" opacity="0.4"/>
+    <circle cx="1050" cy="55" r="5" fill="#FB8500" opacity="0.4"/>
+  </svg>
+
   <div class="hero-left">
-    <div class="hero-tag">Product Thinker & Builder</div>
+    <div class="hero-tag">✦ Product Thinker &amp; Builder</div>
     <h1 class="hero-name">Yolanda<br><span>McLeod</span></h1>
     <p class="hero-sub">I build things that matter.</p>
     <p class="hero-desc">
-      I identify real problems, design solutions, and ship products — 
-      <strong>without waiting for permission.</strong> From a self-discovery guidebook 
-      to a NYC rental database, a SaaS journaling app, and a financial clarity tool 
+      I identify real problems, design solutions, and ship products —
+      <strong>without waiting for permission.</strong> From a self-discovery guidebook
+      to a NYC rental database, a SaaS journaling app, and a financial clarity tool
       I designed, built, and launched — I create tools that make life and work better.
     </p>
     <div class="hero-ctas">
       <a href="#work" class="btn-primary">See My Work →</a>
       <a href="#about" class="btn-secondary">About Me</a>
-      <a href="#contact" class="btn-secondary">Get In Touch</a>
+      <a href="#contact" class="btn-outline-pink">Get In Touch</a>
     </div>
     <div class="hero-location">South Florida · Open to Opportunities</div>
   </div>
 
   <div class="hero-right">
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hero-card-label">What I bring to the table</div>
-        <div class="hero-stat-row">
-          <div class="hero-stat">
-            <div class="hero-stat-num">4</div>
-            <div class="hero-stat-lbl">Products Built</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-num">4K+</div>
-            <div class="hero-stat-lbl">Data Points Collected</div>
-          </div>
+    <div class="hero-card">
+      <div class="hero-card-label">What I bring to the table</div>
+      <div class="hero-stat-row">
+        <div class="hero-stat pink">
+          <div class="hero-stat-num pink">4</div>
+          <div class="hero-stat-lbl">Products Built</div>
         </div>
-        <div class="hero-tags">
-          <span class="hero-tag-pill terra">Product Thinking</span>
-          <span class="hero-tag-pill">User Research</span>
-          <span class="hero-tag-pill terra">Problem Solving</span>
-          <span class="hero-tag-pill">Iteration</span>
-          <span class="hero-tag-pill terra">Shipping</span>
-          <span class="hero-tag-pill">Data Systems</span>
+        <div class="hero-stat purple">
+          <div class="hero-stat-num purple">4K+</div>
+          <div class="hero-stat-lbl">Data Points</div>
         </div>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat yellow">
+          <div class="hero-stat-num yellow">2</div>
+          <div class="hero-stat-lbl">Live Apps</div>
+        </div>
+        <div class="hero-stat teal">
+          <div class="hero-stat-num teal">1</div>
+          <div class="hero-stat-lbl">Book Published</div>
+        </div>
+      </div>
+      <div class="hero-pills">
+        <span class="hero-pill pink">Product Design</span>
+        <span class="hero-pill purple">Firebase</span>
+        <span class="hero-pill teal">Shipped &amp; Live</span>
+        <span class="hero-pill pink">Self-Taught</span>
+        <span class="hero-pill purple">PM Thinking</span>
       </div>
     </div>
   </div>
@@ -563,33 +579,27 @@ footer span { color: var(--terra-mid); }
 
 <!-- ABOUT -->
 <section class="about" id="about">
+  <!-- small flower accent -->
+  <svg style="position:absolute;top:40px;right:60px;opacity:0.25;pointer-events:none" width="80" height="80" viewBox="0 0 80 80">
+    <ellipse cx="40" cy="12" rx="8" ry="14" fill="#FF3D7F"/>
+    <ellipse cx="40" cy="68" rx="8" ry="14" fill="#FF3D7F"/>
+    <ellipse cx="12" cy="40" rx="14" ry="8" fill="#FF3D7F"/>
+    <ellipse cx="68" cy="40" rx="14" ry="8" fill="#FF3D7F"/>
+    <ellipse cx="20" cy="20" rx="8" ry="14" fill="#FFB3D0" transform="rotate(45 20 20)"/>
+    <ellipse cx="60" cy="20" rx="8" ry="14" fill="#FFB3D0" transform="rotate(-45 60 20)"/>
+    <ellipse cx="20" cy="60" rx="8" ry="14" fill="#FFB3D0" transform="rotate(-45 20 60)"/>
+    <ellipse cx="60" cy="60" rx="8" ry="14" fill="#FFB3D0" transform="rotate(45 60 60)"/>
+    <circle cx="40" cy="40" r="10" fill="#FFD60A"/>
+  </svg>
   <div class="section-label">About Me</div>
   <h2 class="section-title">Builder by nature,<br><em>thinker by instinct</em></h2>
   <div class="about-grid">
     <div class="about-left reveal">
       <p class="about-quote">"I don't want a job that I tolerate. I want work that I love."</p>
-      <p class="about-body">
-        I spent years doing work that didn't fit — tolerating jobs at great companies, 
-        feeling the gap between what I was doing and what I was capable of. 
-        <strong>Then I started building.</strong>
-      </p>
-      <p class="about-body">
-        What I discovered is that I've been a product thinker my entire life. 
-        Every time I saw a problem — a fragmented NYC rental market, a need for 
-        personal business accountability — I didn't just notice it. 
-        <strong>I built something to solve it.</strong>
-      </p>
-      <p class="about-body">
-        Now I'm channeling that into a career that fits who I actually am: 
-        someone who obsesses over how things work, how they could work better, 
-        and how to make them real.
-      </p>
-      <p class="about-body">
-        And it turns out building has always been my language — not just apps and databases, 
-        but a <strong>published guidebook</strong> that helped people design their dream lives, 
-        blogs I ran for years, and words I discovered I could use to move people. 
-        The through line was always the same: <strong>see a gap, think of a fix, make it real.</strong>
-      </p>
+      <p class="about-body">I spent years doing work that didn't fit — tolerating jobs at great companies, feeling the gap between what I was doing and what I was capable of. <strong>Then I started building.</strong></p>
+      <p class="about-body">What I discovered is that I've been a product thinker my entire life. Every time I saw a problem — a fragmented NYC rental market, a need for personal business accountability — I didn't just notice it. <strong>I built something to solve it.</strong></p>
+      <p class="about-body">Now I'm channeling that into a career that fits who I actually am: someone who obsesses over how things work, how they could work better, and how to make them real.</p>
+      <p class="about-body">And it turns out building has always been my language — not just apps and databases, but a <strong>published guidebook</strong> that helped people design their dream lives, blogs I ran for years, and words I discovered I could use to move people. The through line was always the same: <strong>see a gap, think of a fix, make it real.</strong></p>
     </div>
     <div class="about-right reveal">
       <div class="values-grid">
@@ -623,196 +633,124 @@ footer span { color: var(--terra-mid); }
   <div class="section-label">Selected Work</div>
   <h2 class="section-title">Products I've <em>built</em></h2>
   <p class="section-intro">Four real things built from real problems — apps, tools, and a guidebook — all shipped into the real world.</p>
-
   <div class="work-grid">
 
-    <!-- PROJECT 1: LOGGD -->
+    <!-- LOGGD -->
     <div class="project-card reveal">
       <div class="project-info">
         <div class="project-number">01</div>
         <div class="project-type">SaaS Product · Live</div>
         <h3 class="project-title">Loggd</h3>
         <p class="project-tagline">Your personal business journal</p>
-        <p class="project-desc">
-          Entrepreneurs have no dedicated tool to track the small daily actions that 
-          compound into growth. Generic apps don't categorize work quality, track time, 
-          or separate wins from busy work — so progress stays invisible and motivation dies.
-          I built Loggd to solve that. A full SaaS product with authentication, cloud sync, 
-          multi-business tracking, time logging, a wins journal, weekly reflections, 
-          and collaboration features. Designed, built, and shipped.
-        </p>
+        <p class="project-desc">Entrepreneurs have no dedicated tool to track the small daily actions that compound into growth. Generic apps don't categorize work quality, track time, or separate wins from busy work — so progress stays invisible and motivation dies. I built Loggd to solve that. A full SaaS product with authentication, cloud sync, multi-business tracking, time logging, a wins journal, weekly reflections, and collaboration features. Designed, built, and shipped.</p>
         <div class="project-pills">
           <span class="project-pill">Product Design</span>
           <span class="project-pill">User Research</span>
-          <span class="project-pill sage">Firebase</span>
-          <span class="project-pill sage">Full Stack</span>
+          <span class="project-pill purple">Firebase</span>
+          <span class="project-pill purple">Full Stack</span>
           <span class="project-pill">Branding</span>
         </div>
         <a href="https://loggd.yolandamcleod.com" target="_blank" class="project-link">Visit Live App →</a>
       </div>
-      <div class="project-visual">
+      <div class="project-visual purple-bg">
         <div class="project-mockup">
-          <div class="mockup-bar">
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
+          <div class="mockup-bar" style="background:var(--purple)">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
             <span class="mockup-title">LOGGD — YOUR BUSINESS JOURNAL</span>
           </div>
           <div class="mockup-body">
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#C44A22"></div>
+              <div class="mockup-row-dot" style="background:#FF3D7F"></div>
               <span class="mockup-row-text">Reached out to 3 new clients</span>
-              <span class="mockup-row-badge" style="background:#FAF0EC;color:#C44A22;border:1px solid #E8A598">⚡ Action</span>
+              <span class="mockup-row-badge" style="background:#FFF0F7;color:#FF3D7F;border:1px solid #FFB3D0">⚡ Action</span>
             </div>
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#7A9E6A"></div>
+              <div class="mockup-row-dot" style="background:#06D6A0"></div>
               <span class="mockup-row-text">Closed first paid project</span>
-              <span class="mockup-row-badge" style="background:#F0F5EC;color:#7A9E6A;border:1px solid #B5C9A0">🏆 Win</span>
+              <span class="mockup-row-badge" style="background:#F0FFFC;color:#059A72;border:1px solid #80E8CC">🏆 Win</span>
             </div>
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#4361ee"></div>
+              <div class="mockup-row-dot" style="background:#7C3AED"></div>
               <span class="mockup-row-text">Built onboarding flow v2</span>
-              <span class="mockup-row-badge" style="background:#eef0fd;color:#4361ee;border:1px solid #c0c8f8">🔵 Deep</span>
+              <span class="mockup-row-badge" style="background:#F3F0FF;color:#7C3AED;border:1px solid #C4B5F4">🔵 Deep</span>
             </div>
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#D85A30"></div>
+              <div class="mockup-row-dot" style="background:#FB8500"></div>
               <span class="mockup-row-text">Weekly reflection written</span>
-              <span class="mockup-row-badge" style="background:#FDF4F0;color:#D85A30;border:1px solid #F0B8A0">✅ Outcome</span>
+              <span class="mockup-row-badge" style="background:#FFF4E8;color:#FB8500;border:1px solid #FDD9A0">✅ Outcome</span>
             </div>
             <div class="mockup-stat-row">
-              <div class="mockup-stat">
-                <div class="mockup-stat-num">12</div>
-                <div class="mockup-stat-lbl">This Week</div>
-              </div>
-              <div class="mockup-stat">
-                <div class="mockup-stat-num">7</div>
-                <div class="mockup-stat-lbl">Streak</div>
-              </div>
-              <div class="mockup-stat sage-stat">
-                <div class="mockup-stat-num">84</div>
-                <div class="mockup-stat-lbl">Total</div>
-              </div>
+              <div class="mockup-stat"><div class="mockup-stat-num">12</div><div class="mockup-stat-lbl">This Week</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-num">7</div><div class="mockup-stat-lbl">Streak</div></div>
+              <div class="mockup-stat" style="background:var(--teal-light);border-color:var(--teal-mid)"><div class="mockup-stat-num" style="color:var(--teal)">84</div><div class="mockup-stat-lbl">Total</div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECT 2: NYC DATABASE -->
+    <!-- NYC DATABASE -->
     <div class="project-card reverse reveal">
       <div class="project-info">
         <div class="project-number">02</div>
-        <div class="project-type">Data Product · Portfolio</div>
+        <div class="project-type" style="color:var(--teal)">Data Product · Portfolio</div>
         <h3 class="project-title">NYC Rental Intelligence Database</h3>
         <p class="project-tagline">A personal MLS where none existed</p>
-        <p class="project-desc">
-          As a NYC rental agent, I was losing deals because there was no central 
-          system to track luxury buildings, availability, unit types, and guarantor 
-          policies across a fragmented market. So I built one. A searchable database 
-          of 4,000+ data points across three datasets — guarantor-accepted buildings, 
-          luxury inventory, and open rentals — organized to eliminate blind outreach 
-          and match clients to properties faster.
-        </p>
+        <p class="project-desc">As a NYC rental agent, I was losing deals because there was no central system to track luxury buildings, availability, unit types, and guarantor policies across a fragmented market. So I built one. A searchable database of 4,000+ data points across three datasets — guarantor-accepted buildings, luxury inventory, and open rentals — organized to eliminate blind outreach and match clients to properties faster.</p>
         <div class="project-pills">
-          <span class="project-pill">Market Research</span>
-          <span class="project-pill">Data Architecture</span>
-          <span class="project-pill sage">Systems Design</span>
-          <span class="project-pill sage">Problem Solving</span>
+          <span class="project-pill teal">Market Research</span>
+          <span class="project-pill teal">Data Architecture</span>
+          <span class="project-pill">Systems Design</span>
+          <span class="project-pill">Problem Solving</span>
         </div>
-        <a href="#contact" class="project-link">Request to View →</a>
+        <a href="#contact" class="project-link" style="color:var(--teal)">Request to View →</a>
       </div>
-      <div class="project-visual sage-bg">
+      <div class="project-visual teal-bg">
         <div class="excel-mockup">
-          <div class="excel-header">NYC RENTAL MARKET DATABASE — OVERVIEW</div>
+          <div class="excel-header">NYC RENTAL MARKET DATABASE</div>
           <div class="excel-subheader">
             <div class="excel-col-head">Building</div>
-            <div class="excel-col-head">Management Co.</div>
+            <div class="excel-col-head">Mgmt Co.</div>
             <div class="excel-col-head">Area</div>
             <div class="excel-col-head">Guarantor</div>
           </div>
-          <div class="excel-row">
-            <div class="excel-cell">The Ventura</div>
-            <div class="excel-cell">Rose Associates</div>
-            <div class="excel-cell">UES</div>
-            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
-          </div>
-          <div class="excel-row">
-            <div class="excel-cell">98 Riverside Dr</div>
-            <div class="excel-cell">Galil Management</div>
-            <div class="excel-cell">UWS</div>
-            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
-          </div>
-          <div class="excel-row">
-            <div class="excel-cell">Carnegie Mews</div>
-            <div class="excel-cell">Rose Associates</div>
-            <div class="excel-cell">Midtown W</div>
-            <div class="excel-badge-cell"><span class="excel-badge">Rhino</span></div>
-          </div>
-          <div class="excel-row">
-            <div class="excel-cell">The Larstrand</div>
-            <div class="excel-cell">Rose Associates</div>
-            <div class="excel-cell">UWS</div>
-            <div class="excel-badge-cell"><span class="excel-badge">Insurent</span></div>
-          </div>
-          <div class="excel-row">
-            <div class="excel-cell">685 First Ave</div>
-            <div class="excel-cell">Vector Mgmt</div>
-            <div class="excel-cell">Murray Hill</div>
-            <div class="excel-badge-cell"><span class="excel-badge">Multiple</span></div>
-          </div>
+          <div class="excel-row"><div class="excel-cell">The Ventura</div><div class="excel-cell">Rose Associates</div><div class="excel-cell">UES</div><div class="excel-cell"><span class="excel-badge">Insurent</span></div></div>
+          <div class="excel-row"><div class="excel-cell">98 Riverside Dr</div><div class="excel-cell">Galil Mgmt</div><div class="excel-cell">UWS</div><div class="excel-cell"><span class="excel-badge">Insurent</span></div></div>
+          <div class="excel-row"><div class="excel-cell">Carnegie Mews</div><div class="excel-cell">Rose Associates</div><div class="excel-cell">Midtown W</div><div class="excel-cell"><span class="excel-badge">Rhino</span></div></div>
+          <div class="excel-row"><div class="excel-cell">The Larstrand</div><div class="excel-cell">Rose Associates</div><div class="excel-cell">UWS</div><div class="excel-cell"><span class="excel-badge">Insurent</span></div></div>
+          <div class="excel-row"><div class="excel-cell">685 First Ave</div><div class="excel-cell">Vector Mgmt</div><div class="excel-cell">Murray Hill</div><div class="excel-cell"><span class="excel-badge">Multiple</span></div></div>
         </div>
       </div>
     </div>
 
-  </div>
-</section>
-
-    <!-- PROJECT 3: CLARIFI -->
+    <!-- CLARIFI -->
     <div class="project-card reveal">
       <div class="project-info">
         <div class="project-number">03</div>
-        <div class="project-type">SaaS Product · Live</div>
+        <div class="project-type" style="color:#E040A0">SaaS Product · Live</div>
         <h3 class="project-title">Clarifi</h3>
         <p class="project-tagline">Your financial clarity, not a budget app</p>
-        <p class="project-desc">
-          Most finance apps lead with restriction and guilt. Clarifi leads with awareness.
-          Built around one question — where do I stand right now? — it gives you a real-time
-          snapshot of your cards, income streams, upcoming payments, bills, subscriptions,
-          and debt. No budget. No judgment. Just clarity. Designed, built, branded, and
-          shipped with a full login system, cloud sync, and a Berry Bright visual identity
-          that makes money feel approachable instead of anxiety-inducing.
-        </p>
+        <p class="project-desc">Most finance apps lead with restriction and guilt. Clarifi leads with awareness. Built around one question — where do I stand right now? — it gives you a real-time snapshot of your cards, income streams, upcoming payments, bills, subscriptions, and debt. No budget. No judgment. Just clarity. Designed, built, branded, and shipped with a full login system, cloud sync, and a Berry Bright visual identity that makes money feel approachable instead of anxiety-inducing.</p>
         <div class="project-pills">
-          <span class="project-pill">Product Design</span>
-          <span class="project-pill">Branding</span>
-          <span class="project-pill sage">Firebase</span>
-          <span class="project-pill sage">Full Stack</span>
-          <span class="project-pill">UX Psychology</span>
+          <span class="project-pill" style="background:#FDF0FA;color:#E040A0;border-color:#F0B0D8">Product Design</span>
+          <span class="project-pill" style="background:#FDF0FA;color:#E040A0;border-color:#F0B0D8">Branding</span>
+          <span class="project-pill purple">Firebase</span>
+          <span class="project-pill purple">Full Stack</span>
+          <span class="project-pill" style="background:#FDF0FA;color:#E040A0;border-color:#F0B0D8">UX Psychology</span>
         </div>
-        <a href="https://clarifi.yolandamcleod.com" target="_blank" class="project-link">Visit Live App →</a>
+        <a href="https://clarifi.yolandamcleod.com" target="_blank" class="project-link" style="color:#E040A0">Visit Live App →</a>
       </div>
-      <div class="project-visual">
+      <div class="project-visual" style="background:#FDF0FA">
         <div class="project-mockup">
           <div class="mockup-bar" style="background:#E040A0">
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
-            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
             <span class="mockup-title">CLARIFI — FINANCIAL CLARITY</span>
           </div>
           <div class="mockup-body">
             <div class="mockup-stat-row">
-              <div class="mockup-stat" style="background:#FDF0FA;border-color:#F0B0D8">
-                <div class="mockup-stat-num" style="color:#E040A0">$3,624</div>
-                <div class="mockup-stat-lbl">Income</div>
-              </div>
-              <div class="mockup-stat" style="background:#E8FFF5;border-color:#80DFB8">
-                <div class="mockup-stat-num" style="color:#00B87A">$312</div>
-                <div class="mockup-stat-lbl">Available</div>
-              </div>
-              <div class="mockup-stat" style="background:#FDF0FA;border-color:#F0B0D8">
-                <div class="mockup-stat-num" style="color:#E040A0">$534</div>
-                <div class="mockup-stat-lbl">Due</div>
-              </div>
+              <div class="mockup-stat" style="background:#FDF0FA;border-color:#F0B0D8"><div class="mockup-stat-num" style="color:#E040A0">$3,624</div><div class="mockup-stat-lbl">Income</div></div>
+              <div class="mockup-stat" style="background:#F0FFFC;border-color:#80E8CC"><div class="mockup-stat-num" style="color:#059A72">$312</div><div class="mockup-stat-lbl">Available</div></div>
+              <div class="mockup-stat" style="background:#FDF0FA;border-color:#F0B0D8"><div class="mockup-stat-num" style="color:#E040A0">$534</div><div class="mockup-stat-lbl">Due</div></div>
             </div>
             <div class="mockup-row" style="margin-top:8px">
               <div class="mockup-row-dot" style="background:#E040A0"></div>
@@ -820,64 +758,206 @@ footer span { color: var(--terra-mid); }
               <span class="mockup-row-badge" style="background:#FDF0FA;color:#E040A0;border:1px solid #F0B0D8">18% free</span>
             </div>
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#00B87A"></div>
+              <div class="mockup-row-dot" style="background:#059A72"></div>
               <span class="mockup-row-text">Milestone — $253 available</span>
-              <span class="mockup-row-badge" style="background:#E8FFF5;color:#00B87A;border:1px solid #80DFB8">51% free</span>
+              <span class="mockup-row-badge" style="background:#F0FFFC;color:#059A72;border:1px solid #80E8CC">51% free</span>
             </div>
             <div class="mockup-row">
-              <div class="mockup-row-dot" style="background:#D4A843"></div>
+              <div class="mockup-row-dot" style="background:#FFD60A"></div>
               <span class="mockup-row-text">Capital One due Apr 21</span>
-              <span class="mockup-row-badge" style="background:#FEF8EC;color:#D4A843;border:1px solid #F0D49A">&#x23F0; Soon</span>
+              <span class="mockup-row-badge" style="background:#FFFBF0;color:#C89900;border:1px solid #FFD60A">⏰ Soon</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- BEYOND THE CODE -->
 <section class="work" id="creative" style="background:#fff">
-  <div class="section-label">Beyond the Code</div>
-  <h2 class="section-title">A lifetime of <em>building</em></h2>
+  <div class="section-label" style="color:var(--purple)">Beyond the Code</div>
+  <h2 class="section-title" style="color:var(--dark)">A lifetime of <em style="color:var(--purple)">building</em></h2>
   <p class="section-intro">Long before the apps, there were words, ideas, and a pattern of creating things that didn't exist before.</p>
-
   <div class="work-grid" style="margin-top:40px">
-
-    <!-- DESIGN YOUR DREAM LIFE -->
     <div class="project-card reveal">
       <div class="project-info">
-        <div class="project-number" style="color:#D4A843;opacity:0.3">04</div>
-        <div class="project-type" style="color:#D4A843">Digital Product · Published 2023</div>
+        <div class="project-number" style="color:#FFD60A;opacity:0.4">04</div>
+        <div class="project-type" style="color:#C89900">Digital Product · Published 2023</div>
         <h3 class="project-title">Design Your Dream Life</h3>
         <p class="project-tagline">A guided vision journal for self-reflection, clarity, and personal growth</p>
-        <p class="project-desc">
-          Before the apps, before the portfolio, there was this. A guided workbook built from
-          personal self-discovery exercises — core values identification, life vision mapping,
-          limiting belief work, and dream life design. Created when I didn't yet know I was
-          creative. Published on Gumroad and sold independently. This was the project that
-          unlocked everything — the realization that words are creative, that I have a voice,
-          and that I can make something that genuinely helps people.
-        </p>
+        <p class="project-desc">Before the apps, before the portfolio, there was this. A guided workbook built from personal self-discovery exercises — core values identification, life vision mapping, limiting belief work, and dream life design. Created when I didn't yet know I was creative. Published on Gumroad and sold independently. This was the project that unlocked everything — the realization that words are creative, that I have a voice, and that I can make something that genuinely helps people.</p>
         <div class="project-pills">
-          <span class="project-pill" style="background:var(--gold-light);color:var(--gold);border-color:var(--gold-mid)">Digital Product</span>
-          <span class="project-pill" style="background:var(--gold-light);color:var(--gold);border-color:var(--gold-mid)">Self-Development</span>
-          <span class="project-pill sage">Published & Sold</span>
-          <span class="project-pill sage">Gumroad</span>
+          <span class="project-pill yellow">Digital Product</span>
+          <span class="project-pill yellow">Self-Development</span>
+          <span class="project-pill teal">Published &amp; Sold</span>
+          <span class="project-pill teal">Gumroad</span>
         </div>
-        <p style="font-size:13px;color:#C090B8;font-style:italic;margin-top:8px">&#x2193; Get it free below — no strings attached</p>
+        <p style="font-size:13px;color:var(--pink);font-style:italic;margin-top:8px">&#x2193; Get it free below — no strings attached</p>
       </div>
-      <div class="project-visual sage-bg" style="background:linear-gradient(135deg,#FDF8EC,#FEF0FA)">
+      <div class="project-visual yellow-bg" style="background:linear-gradient(135deg,#FFFBF0,#FFF0F7)">
         <div style="position:relative;z-index:2;width:100%;max-width:280px;text-align:center">
-          <div style="background:linear-gradient(135deg,#F4845F,#E040A0,#8040D0);border-radius:20px;padding:32px 24px;box-shadow:0 16px 48px rgba(224,64,160,0.2)">
+          <div style="background:linear-gradient(135deg,#FB8500,#FF3D7F,#7C3AED);border-radius:20px;padding:32px 24px;box-shadow:0 16px 48px rgba(255,61,127,0.25)">
             <div style="font-family:Georgia,serif;font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.01em;line-height:1.2;margin-bottom:8px">Design Your<br><em>Dream Life</em></div>
             <div style="height:1px;background:rgba(255,255,255,0.3);margin:12px 0"></div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.75);letter-spacing:0.1em;text-transform:uppercase">A Guided Vision Journal</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px">Self-Reflection · Clarity · Growth</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.1em;text-transform:uppercase">A Guided Vision Journal</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.65);margin-top:4px">Self-Reflection · Clarity · Growth</div>
             <div style="margin-top:16px;font-size:10px;color:rgba(255,255,255,0.5);font-style:italic">© Yolanda Maliaka 2023</div>
           </div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;color:var(--muted)">Available on Gumroad</div>
+          <div style="margin-top:14px;font-size:12px;font-weight:700;color:var(--muted)">Available on Gumroad ✨</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDEBOOK CTA -->
+<section class="guidebook-section">
+  <svg style="position:absolute;top:20px;left:40px;opacity:0.2;pointer-events:none" width="70" height="70" viewBox="0 0 70 70">
+    <ellipse cx="35" cy="10" rx="7" ry="12" fill="#FF3D7F"/>
+    <ellipse cx="35" cy="60" rx="7" ry="12" fill="#FF3D7F"/>
+    <ellipse cx="10" cy="35" rx="12" ry="7" fill="#FF3D7F"/>
+    <ellipse cx="60" cy="35" rx="12" ry="7" fill="#FF3D7F"/>
+    <circle cx="35" cy="35" r="8" fill="#FFD60A"/>
+  </svg>
+  <svg style="position:absolute;bottom:20px;right:40px;opacity:0.2;pointer-events:none" width="70" height="70" viewBox="0 0 70 70">
+    <ellipse cx="35" cy="10" rx="7" ry="12" fill="#7C3AED"/>
+    <ellipse cx="35" cy="60" rx="7" ry="12" fill="#7C3AED"/>
+    <ellipse cx="10" cy="35" rx="12" ry="7" fill="#7C3AED"/>
+    <ellipse cx="60" cy="35" rx="12" ry="7" fill="#7C3AED"/>
+    <circle cx="35" cy="35" r="8" fill="#FFD60A"/>
+  </svg>
+  <div style="font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--pink);margin-bottom:16px">A Gift For You 🌸</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--dark);margin-bottom:16px;line-height:1.2">Get <em style="color:var(--purple)">Design Your Dream Life</em> free</h2>
+  <p style="font-size:16px;color:var(--mid);line-height:1.7;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto">A guided vision journal for self-reflection, clarity, and personal growth. Yours free — no strings attached.</p>
+  <div style="max-width:400px;margin:0 auto">
+    <a href="https://designyourdreamlife.gumroad.com/l/hqpvm" target="_blank" style="display:block;width:100%;padding:16px;background:linear-gradient(135deg,#FF3D7F,#7C3AED);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:0.02em;text-decoration:none;text-align:center;box-shadow:0 8px 28px rgba(255,61,127,0.35)">Get the Guidebook Free 🌸</a>
+    <p style="margin-top:12px;font-size:12px;color:var(--muted);text-align:center">Free on Gumroad — no strings attached.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="timeline-section" id="history">
+  <svg style="position:absolute;top:40px;right:60px;opacity:0.12;pointer-events:none" width="100" height="100" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="14" rx="10" ry="18" fill="#FF3D7F"/>
+    <ellipse cx="50" cy="86" rx="10" ry="18" fill="#FF3D7F"/>
+    <ellipse cx="14" cy="50" rx="18" ry="10" fill="#FF3D7F"/>
+    <ellipse cx="86" cy="50" rx="18" ry="10" fill="#FF3D7F"/>
+    <circle cx="50" cy="50" r="13" fill="#FFD60A"/>
+  </svg>
+  <div class="section-label">Always Been Building</div>
+  <h2 class="section-title">7 years of <em>creating things</em></h2>
+  <p class="section-intro">This isn't a pivot. It's a pattern. Long before the PM title existed in my vocabulary, I was building products, brands, and audiences from scratch.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--pink);color:#fff">🌿</div>
+      <div>
+        <div class="timeline-year" style="color:var(--pink)">2018</div>
+        <div class="timeline-title">Yolispired</div>
+        <div class="timeline-sub" style="color:var(--pink-mid)">Wellness Blog &amp; Content Brand</div>
+        <p class="timeline-desc">Built a wellness brand from scratch with a full content strategy — health, wellness, and weight loss articles, downloadable freebies, and a 3-part email series called <em>The Best You</em>. Built an audience, created lead magnets, and ran an automated email sequence. All of it self-taught, self-built, and self-run.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Content Strategy</span>
+          <span class="timeline-tag">Email Marketing</span>
+          <span class="timeline-tag">Lead Magnets</span>
+          <span class="timeline-tag">Audience Building</span>
+          <span class="timeline-tag">Brand Creation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--yellow);color:var(--dark)">📋</div>
+      <div>
+        <div class="timeline-year" style="color:var(--yellow)">2018 – 2019</div>
+        <div class="timeline-title">Weekly Meal Planner</div>
+        <div class="timeline-sub" style="color:rgba(255,214,10,0.7)">Published on Amazon KDP</div>
+        <p class="timeline-desc">Designed, formatted, and published a weekly meal planning journal on Amazon KDP — complete with meal planning pages and integrated shopping list sections. A real product, on a real marketplace, built entirely independently. The product instinct has always been there.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Product Design</span>
+          <span class="timeline-tag">Self-Publishing</span>
+          <span class="timeline-tag">Amazon KDP</span>
+          <span class="timeline-tag">Print Product</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--purple);color:#fff">🍷</div>
+      <div>
+        <div class="timeline-year" style="color:var(--purple-mid)">2021</div>
+        <div class="timeline-title">Winedraft</div>
+        <div class="timeline-sub" style="color:var(--purple-mid)">Wine Education Blog</div>
+        <p class="timeline-desc">Built a wine education blog to teach myself and others about wine — varietals, regions, pairings, and tasting notes. Identified a niche, built a brand around genuine passion, and used content creation as both a learning tool and a value-delivery vehicle. Classic product thinking: "I need this — others probably do too."</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Niche Content</span>
+          <span class="timeline-tag">Brand Building</span>
+          <span class="timeline-tag">Education</span>
+          <span class="timeline-tag">Community</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--teal);color:#fff">🗂️</div>
+      <div>
+        <div class="timeline-year" style="color:var(--teal-mid)">2021 – 2025</div>
+        <div class="timeline-title">NYC Rental Intelligence Database</div>
+        <div class="timeline-sub" style="color:var(--teal-mid)">Data Product · Excel</div>
+        <p class="timeline-desc">Built a searchable 4,000+ point database to solve a gap in NYC's fragmented luxury rental market — no MLS existed, so I made one. Eliminated blind outreach and matched clients to properties faster. A real operational tool built to solve a real business problem.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Data Architecture</span>
+          <span class="timeline-tag">Systems Design</span>
+          <span class="timeline-tag">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--orange);color:#fff">✨</div>
+      <div>
+        <div class="timeline-year" style="color:var(--orange)">2023</div>
+        <div class="timeline-title">Design Your Dream Life</div>
+        <div class="timeline-sub" style="color:rgba(251,133,0,0.7)">Digital Guidebook · Gumroad</div>
+        <p class="timeline-desc">Self-published a guided vision journal for self-reflection, clarity, and personal growth. Sold independently on Gumroad. The project that unlocked the creative identity and proved that words, too, are a product.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Digital Product</span>
+          <span class="timeline-tag">Self-Development</span>
+          <span class="timeline-tag">Gumroad</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--pink);color:#fff">📓</div>
+      <div>
+        <div class="timeline-year" style="color:var(--pink)">2026</div>
+        <div class="timeline-title">Loggd</div>
+        <div class="timeline-sub" style="color:var(--pink-mid)">SaaS Product · Live</div>
+        <p class="timeline-desc">Full SaaS business journaling app with Firebase auth, cloud sync, multi-business tracking, time logging, wins journal, and collaboration. Designed, built, branded, and shipped independently.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Full Stack</span>
+          <span class="timeline-tag">Firebase</span>
+          <span class="timeline-tag">SaaS</span>
+          <span class="timeline-tag">Live Product</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--purple);color:#fff">💳</div>
+      <div>
+        <div class="timeline-year" style="color:var(--purple-mid)">2026</div>
+        <div class="timeline-title">Clarifi</div>
+        <div class="timeline-sub" style="color:var(--purple-mid)">SaaS Product · Live</div>
+        <p class="timeline-desc">Real-time personal finance clarity app. Cards, income, bills, subscriptions, and upcoming payments — all in one honest snapshot. No budget. No judgment. Just clarity. Full Firebase stack, Berry Bright brand identity, shipped independently.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Full Stack</span>
+          <span class="timeline-tag">Firebase</span>
+          <span class="timeline-tag">Fintech</span>
+          <span class="timeline-tag">Live Product</span>
         </div>
       </div>
     </div>
@@ -885,22 +965,7 @@ footer span { color: var(--terra-mid); }
   </div>
 </section>
 
-
-<!-- GUIDEBOOK EMAIL CAPTURE -->
-<section style="background:linear-gradient(135deg,#FDF8EC,#FEF0FA);padding:80px 24px">
-  <div style="max-width:640px;margin:0 auto;text-align:center">
-    <div style="font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#C090B8;margin-bottom:16px">A Gift For You</div>
-    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:#2C1810;margin-bottom:16px;line-height:1.2">Get <em style="color:#D4A843">Design Your Dream Life</em> free</h2>
-    <p style="font-size:16px;color:#7A4A38;line-height:1.7;margin-bottom:32px;font-family:'DM Sans',sans-serif">A guided vision journal for self-reflection, clarity, and personal growth. Enter your name and email and it is yours — no strings attached.</p>
-    <div style="max-width:500px;margin:0 auto">
-      <div style="background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(212,168,67,0.15);overflow:hidden;padding:32px;max-width:500px;margin:0 auto">
-        <a href="https://designyourdreamlife.gumroad.com/l/hqpvm" target="_blank" style="display:block;width:100%;padding:15px;background:linear-gradient(135deg,#D4A843,#E8C060);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:0.02em;text-decoration:none;text-align:center;box-sizing:border-box">Get the Guidebook Free &#x1F338;</a>
-        <p style="margin-top:12px;font-size:12px;color:#C090B8;font-family:'DM Sans',sans-serif;text-align:center">Free on Gumroad — no strings attached.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- SKILLS -->
 <section class="skills" id="skills">
   <div class="section-label">Capabilities</div>
   <h2 class="section-title">What I <em>bring</em></h2>
@@ -909,79 +974,77 @@ footer span { color: var(--terra-mid); }
       <div class="skill-icon">🧠</div>
       <div class="skill-title">Product Thinking</div>
       <div class="skill-desc">I identify gaps, define problems clearly, and design solutions that actually solve them. I think in user flows, not just features.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Problem Definition</span>
-        <span class="skill-tag">User Research</span>
-        <span class="skill-tag">Roadmapping</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Problem Definition</span><span class="skill-tag">User Research</span><span class="skill-tag">Roadmapping</span></div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">🏗️</div>
-      <div class="skill-title">Building & Shipping</div>
+      <div class="skill-title">Building &amp; Shipping</div>
       <div class="skill-desc">I don't just plan — I build. I've taken products from zero to live, iterating based on real needs and real feedback.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Prototyping</span>
-        <span class="skill-tag">Iteration</span>
-        <span class="skill-tag">Launch</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Prototyping</span><span class="skill-tag">Iteration</span><span class="skill-tag">Launch</span></div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">📊</div>
-      <div class="skill-title">Data & Systems</div>
+      <div class="skill-title">Data &amp; Systems</div>
       <div class="skill-desc">I understand how to structure information so it becomes useful — from databases and spreadsheets to product analytics.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Database Design</span>
-        <span class="skill-tag">Data Architecture</span>
-        <span class="skill-tag">Excel / Sheets</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Database Design</span><span class="skill-tag">Data Architecture</span><span class="skill-tag">Excel / Sheets</span></div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">✍️</div>
-      <div class="skill-title">Content & Communication</div>
+      <div class="skill-title">Content &amp; Communication</div>
       <div class="skill-desc">From blog writing to product copy, I communicate clearly and persuasively — written and verbal.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Writing</span>
-        <span class="skill-tag">Storytelling</span>
-        <span class="skill-tag">Documentation</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Writing</span><span class="skill-tag">Storytelling</span><span class="skill-tag">Documentation</span></div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">🎬</div>
       <div class="skill-title">Creative Production</div>
       <div class="skill-desc">Video editing, content creation, and visual thinking — I understand how to craft experiences, not just products.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Video Editing</span>
-        <span class="skill-tag">Visual Design</span>
-        <span class="skill-tag">Branding</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Video Editing</span><span class="skill-tag">Visual Design</span><span class="skill-tag">Branding</span></div>
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">🤝</div>
-      <div class="skill-title">People & Process</div>
+      <div class="skill-title">People &amp; Process</div>
       <div class="skill-desc">I've worked across industries and know how to communicate with stakeholders, manage priorities, and move teams forward.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Collaboration</span>
-        <span class="skill-tag">Client Relations</span>
-        <span class="skill-tag">Real Estate</span>
-      </div>
+      <div class="skill-tags"><span class="skill-tag">Collaboration</span><span class="skill-tag">Client Relations</span><span class="skill-tag">Real Estate</span></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="section-label" style="justify-content:center">Let's Connect</div>
+  <svg style="position:absolute;top:30px;left:60px;opacity:0.18;pointer-events:none" width="90" height="90" viewBox="0 0 90 90">
+    <ellipse cx="45" cy="12" rx="9" ry="16" fill="#FF3D7F"/>
+    <ellipse cx="45" cy="78" rx="9" ry="16" fill="#FF3D7F"/>
+    <ellipse cx="12" cy="45" rx="16" ry="9" fill="#FF3D7F"/>
+    <ellipse cx="78" cy="45" rx="16" ry="9" fill="#FF3D7F"/>
+    <ellipse cx="23" cy="23" rx="9" ry="16" fill="#FFB3D0" transform="rotate(45 23 23)"/>
+    <ellipse cx="67" cy="23" rx="9" ry="16" fill="#FFB3D0" transform="rotate(-45 67 23)"/>
+    <ellipse cx="23" cy="67" rx="9" ry="16" fill="#FFB3D0" transform="rotate(-45 23 67)"/>
+    <ellipse cx="67" cy="67" rx="9" ry="16" fill="#FFB3D0" transform="rotate(45 67 67)"/>
+    <circle cx="45" cy="45" r="12" fill="#FFD60A"/>
+  </svg>
+  <svg style="position:absolute;bottom:30px;right:60px;opacity:0.18;pointer-events:none" width="90" height="90" viewBox="0 0 90 90">
+    <ellipse cx="45" cy="12" rx="9" ry="16" fill="#7C3AED"/>
+    <ellipse cx="45" cy="78" rx="9" ry="16" fill="#7C3AED"/>
+    <ellipse cx="12" cy="45" rx="16" ry="9" fill="#7C3AED"/>
+    <ellipse cx="78" cy="45" rx="16" ry="9" fill="#7C3AED"/>
+    <ellipse cx="23" cy="23" rx="9" ry="16" fill="#C4B5F4" transform="rotate(45 23 23)"/>
+    <ellipse cx="67" cy="23" rx="9" ry="16" fill="#C4B5F4" transform="rotate(-45 67 23)"/>
+    <ellipse cx="23" cy="67" rx="9" ry="16" fill="#C4B5F4" transform="rotate(-45 23 67)"/>
+    <ellipse cx="67" cy="67" rx="9" ry="16" fill="#C4B5F4" transform="rotate(45 67 67)"/>
+    <circle cx="45" cy="45" r="12" fill="#FFD60A"/>
+  </svg>
+  <div class="section-label" style="color:var(--pink)">Let's Connect</div>
   <h2 class="section-title reveal">Ready to build something <em>that matters</em></h2>
   <p class="section-intro reveal">I'm actively exploring Product Management and Product Design roles in South Florida and remotely. If you're building something real and need someone who thinks in problems and ships in solutions — let's talk.</p>
   <div class="contact-links reveal">
     <a href="mailto:hello@yolandamcleod.com" class="btn-primary">Send an Email →</a>
     <a href="https://www.linkedin.com/in/yolanda-mcleod" target="_blank" class="btn-secondary">LinkedIn →</a>
-    <a href="/Yolanda_McLeod_Resume.pdf" target="_blank" class="btn-secondary">Download Resume →</a>
+    <a href="/Yolanda_McLeod_Resume.pdf" target="_blank" class="btn-outline-pink">Download Resume →</a>
   </div>
 </section>
 
 <footer>
-  Built with intention by <span>Yolanda McLeod</span> · South Florida · 2026
+  Built with intention &amp; a lot of flowers 🌸 by <span>Yolanda McLeod</span> · South Florida · 2026
 </footer>
 
 <script>
@@ -995,3 +1058,5 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 </script>
+</body>
+</html>
