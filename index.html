@@ -406,18 +406,82 @@ footer span { color: var(--pink-mid); }
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav { padding: 14px 20px; }
-  .nav-links { gap: 18px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 12px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 100px 24px 40px; }
-  .hero-right { padding: 40px 24px; }
-  section { padding: 70px 24px; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-left { padding: 90px 24px 32px; }
+  .hero-right { padding: 24px 24px 48px; }
+  .hero-card { width: 100%; max-width: 400px; margin: 0 auto; }
+  section { padding: 60px 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
   .project-card, .project-card.reverse { grid-template-columns: 1fr; }
   .project-card.reverse .project-info { order: 1; }
   .project-card.reverse .project-visual { order: 2; }
-  .project-visual { min-height: 260px; }
+  .project-visual { min-height: 220px; }
+  .project-info { padding: 28px 24px; }
+  .project-number { font-size: 48px; }
+  .project-title { font-size: 26px; }
   .skills-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
+  .hero-stat-row { grid-template-columns: 1fr 1fr; }
+  .hero-pills { gap: 6px; }
+  .hero-ctas { flex-direction: column; gap: 10px; }
+  .hero-ctas a { text-align: center; justify-content: center; }
+  .hero-name { font-size: clamp(44px, 12vw, 72px); }
+  .section-title { font-size: clamp(28px, 7vw, 44px); }
+  .timeline { padding-left: 0; }
+  .timeline::before { left: 14px; }
+  .timeline-item { padding-left: 44px; }
+  .timeline-dot { left: 3px; width: 20px; height: 20px; font-size: 9px; }
+  .timeline-title { font-size: 18px; }
+  .contact-links { flex-direction: column; align-items: center; gap: 10px; }
+  .contact-links a { text-align: center; justify-content: center; width: 100%; max-width: 280px; }
+  .guidebook-section { padding: 60px 20px; }
+  .excel-mockup { max-width: 100%; }
+  .mockup-row-text { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .nav-links { gap: 8px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.02em; }
+  .nav-logo { font-size: 18px; }
+  .hero-left { padding: 80px 18px 28px; }
+  .hero-tag { font-size: 10px; padding: 5px 12px; }
+  .hero-sub { font-size: 18px; }
+  .hero-desc { font-size: 14px; }
+  .btn-primary, .btn-secondary, .btn-outline-pink { font-size: 12px; padding: 11px 20px; }
+  .project-info { padding: 22px 18px; }
+  .project-pills { gap: 5px; }
+  .project-pill { font-size: 10px; padding: 3px 9px; }
+  .skill-card { padding: 20px; }
+  .about-quote { font-size: 20px; }
+  .hero-card { padding: 22px 18px; }
+  .hero-stat-num { font-size: 26px; }
+  .timeline-item { padding-left: 38px; margin-bottom: 32px; }
+  .timeline-desc { font-size: 13px; }
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+  margin-left: auto;
+}
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--pink); border-radius: 2px; transition: all 0.2s;
+}
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; flex-direction: column; gap: 0;
+    border-bottom: 3px solid var(--pink);
+    padding: 8px 0; z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 24px; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .nav-links a:last-child { border-bottom: none; }
 }
 </style>
 </head>
@@ -426,13 +490,16 @@ footer span { color: var(--pink-mid); }
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Yolanda McLeod</div>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#history">Timeline</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </div>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -526,14 +593,14 @@ footer span { color: var(--pink-mid); }
   </svg>
 
   <div class="hero-left">
-    <div class="hero-tag">✦ Builder · Creator · Entrepreneur</div>
+    <div class="hero-tag">✦ Creator · Builder · Entrepreneur</div>
     <h1 class="hero-name">Yolanda<br><span>McLeod</span></h1>
-    <p class="hero-sub">I build things that matter.</p>
+    <p class="hero-sub">A creator who builds. A builder who creates.</p>
     <p class="hero-desc">
-      I build products, businesses, and systems —
-      <strong>and I've been doing it my whole life.</strong> From published books
-      to content brands, a NYC market database, and two live SaaS apps —
-      every creation started with a real problem and ended with something real.
+      The creativity came first. Words, ideas, blogs, books, brands.
+      <strong>The building followed.</strong> Apps, tools, systems, products.
+      Now both live together -- every product rooted in creativity,
+      every creation built with intention.
       I'm just getting started.
     </p>
     <div class="hero-ctas">
@@ -541,7 +608,7 @@ footer span { color: var(--pink-mid); }
       <a href="#about" class="btn-secondary">My Story</a>
       <a href="#contact" class="btn-outline-pink">Let's Connect</a>
     </div>
-    <div class="hero-location">South Florida · Building something real</div>
+    <div class="hero-location">South Florida · Creating and building something real</div>
   </div>
 
   <div class="hero-right">
@@ -549,7 +616,7 @@ footer span { color: var(--pink-mid); }
       <div class="hero-card-label">What I've created so far</div>
       <div class="hero-stat-row">
         <div class="hero-stat pink">
-          <div class="hero-stat-num pink">4</div>
+          <div class="hero-stat-num pink">5</div>
           <div class="hero-stat-lbl">Products Built</div>
         </div>
         <div class="hero-stat purple">
@@ -568,10 +635,10 @@ footer span { color: var(--pink-mid); }
         </div>
       </div>
       <div class="hero-pills">
-        <span class="hero-pill pink">Product Builder</span>
-        <span class="hero-pill purple">Entrepreneur</span>
-        <span class="hero-pill teal">Self-Funded</span>
-        <span class="hero-pill pink">Self-Taught</span>
+        <span class="hero-pill pink">Creator</span>
+        <span class="hero-pill purple">Builder</span>
+        <span class="hero-pill teal">Entrepreneur</span>
+        <span class="hero-pill pink">People First</span>
         <span class="hero-pill purple">Just Getting Started</span>
       </div>
     </div>
@@ -593,41 +660,41 @@ footer span { color: var(--pink-mid); }
     <circle cx="40" cy="40" r="10" fill="#FFD60A"/>
   </svg>
   <div class="section-label">About Me</div>
-  <h2 class="section-title">I didn't find my path.<br><em>I built it.</em></h2>
+  <h2 class="section-title">The creativity came first.<br><em>The building followed.</em></h2>
   <div class="about-grid">
     <div class="about-left reveal">
-      <p class="about-quote">"I don't want a job I tolerate. I want a life I designed."</p>
-      <p class="about-body">I've been building things my entire life — long before I had the language for it. A wellness brand with an email series. A book on Amazon. A wine blog. A NYC rental database I built because the market was broken and I needed it to work. Two SaaS apps I designed, coded, and shipped myself. A self-published guidebook that helped people design their dream lives.</p>
-      <p class="about-body">None of it was assigned. None of it was funded. <strong>All of it came from seeing a gap and refusing to wait for someone else to fill it.</strong></p>
-      <p class="about-body">Some of these businesses didn't make it. That's part of the story too — and I'm not hiding it. What they all taught me is that I'm a builder at my core. Not just of products, but of systems, brands, and ideas that didn't exist before I made them.</p>
-      <p class="about-body">Right now I'm building Loggd and Clarifi — two live apps that are early stage and growing. I'm also open to the right product or PM role where I can bring this energy to a team that's building something real. <strong>The through line has always been the same: see a gap, think and design a fix, make it real.</strong></p>
+      <p class="about-quote">"I don't want a life I tolerate. I want a life I designed."</p>
+      <p class="about-body">Before there were apps, there were words. Blogs I ran because I had something to say. A wellness brand I built because I wanted to inspire people. A guidebook I wrote and published because I believed in the power of helping someone design their own life. Creation has always been my first language.</p>
+      <p class="about-body">The building came after. When I saw problems that needed solving, I stopped waiting for someone else to solve them. <strong>A fragmented NYC rental market. Entrepreneurs with no way to track their progress. People who couldn't see their finances clearly.</strong> I built something for each one.</p>
+      <p class="about-body">Now both live together. Every product I build is rooted in creativity and led by empathy. Every piece of content I create is built with intention. I am a human first -- which means I see every user as a person with real issues in need of real solutions, not just a consumer to build for. That is the lens through which I see everything.</p>
+      <p class="about-body">Some of what I've built has failed. I count those too. Failure is just data. And the through line across all of it has always been the same: <strong>see a gap, think and design a fix, make it real.</strong></p>
     </div>
     <div class="about-right reveal">
       <div class="values-grid">
         <div class="value-card">
-          <div class="value-icon">🔍</div>
-          <div class="value-title">Problem First</div>
-          <div class="value-desc">Every business I've built started with a real frustration — mine or someone else's. I don't build solutions in search of problems.</div>
+          <div class="value-icon">✍️</div>
+          <div class="value-title">Creator First</div>
+          <div class="value-desc">Words, ideas, and stories came before the code. Creativity is the root of everything I build -- the product is just the container for the idea.</div>
         </div>
         <div class="value-card">
-          <div class="value-icon">🔄</div>
-          <div class="value-title">Always Iterating</div>
-          <div class="value-desc">Version one is just the beginning. I keep asking what else could make this better, more useful, more complete.</div>
+          <div class="value-icon">🔍</div>
+          <div class="value-title">Problem First</div>
+          <div class="value-desc">Every business I've built started with a real frustration -- mine or someone else's. I don't build solutions in search of problems.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">🚀</div>
           <div class="value-title">I Ship Things</div>
-          <div class="value-desc">Ideas are free. Execution is everything. I've taken things from zero to live — repeatedly, independently, and without a playbook.</div>
+          <div class="value-desc">Ideas are free. Execution is everything. I've taken things from zero to live -- repeatedly, independently, and without waiting for permission.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">🌱</div>
           <div class="value-title">Honest About the Journey</div>
-          <div class="value-desc">Some things I've built have failed. I count those too. Failure is just data — and data makes the next thing better.</div>
+          <div class="value-desc">Some things I've built have failed. I count those too. Failure is just data -- and data makes the next thing better.</div>
         </div>
         <div class="value-card" style="grid-column:1/-1">
           <div class="value-icon">🧍🏽‍♀️</div>
-          <div class="value-title">Person First. Consumer First.</div>
-          <div class="value-desc">Before I'm a builder, an employee, or a professional — I'm a person. That means I'm a consumer first. I lead with the user because I am the user. Every product I've built started there.</div>
+          <div class="value-title">Human First. Consumer Second.</div>
+          <div class="value-desc">I am a human first. Before I am a builder, an employee, or a professional -- I am a person. That means I see every user as a full human being with real problems, real feelings, and a genuine need for a real solution. Not just a consumer. A person. Always.</div>
         </div>
       </div>
     </div>
@@ -637,8 +704,8 @@ footer span { color: var(--pink-mid); }
 <!-- WORK -->
 <section class="work" id="work">
   <div class="section-label">Selected Work</div>
-  <h2 class="section-title">Things I've <em>built</em></h2>
-  <p class="section-intro">Real businesses built from real problems. Some early stage, some still growing — all of them started with nothing but an idea and the decision to make it real.</p>
+  <h2 class="section-title">Things I've <em>created and built</em></h2>
+  <p class="section-intro">Every product started as a creative idea rooted in a real problem. Some early stage, some still growing -- all of them started with nothing but an idea and the decision to make it real.</p>
   <div class="work-grid">
 
     <!-- LOGGD -->
@@ -791,7 +858,7 @@ footer span { color: var(--pink-mid); }
         <div class="project-number" style="color:#FFD60A;opacity:0.4">04</div>
         <div class="project-type" style="color:#C89900">Published Work · Gumroad · 2023</div>
         <h3 class="project-title">Design Your Dream Life</h3>
-        <p class="project-tagline">A guided vision journal — my first published product</p>
+        <p class="project-tagline">A guided vision journal — my second published product</p>
         <p class="project-desc">Before the apps, there was this. A guided workbook built from personal self-discovery work — core values, life vision mapping, limiting belief work, and dream life design. I wrote it, designed it, and published it on Gumroad independently. It sold. It helped people. And it was the project that cracked something open in me — the realization that I had a voice, a point of view, and the ability to create something from nothing that genuinely moved people. That's when I knew building was my thing.</p>
         <div class="project-pills">
           <span class="project-pill yellow">Digital Product</span>
@@ -814,6 +881,59 @@ footer span { color: var(--pink-mid); }
         </div>
       </div>
     </div>
+
+    <!-- YAAD CONTENT STUDIO -->
+    <div class="project-card reverse reveal">
+      <div class="project-info">
+        <div class="project-number" style="color:#00a846;opacity:0.3">05</div>
+        <div class="project-type" style="color:#00a846">Personal Tool · Built for Me · 2026 🇯🇲</div>
+        <h3 class="project-title">Yaad Content Studio</h3>
+        <p class="project-tagline">Built to get out of my own way</p>
+        <p class="project-desc">Not every product is built for a market. This one was built for me. I love to talk, I love to document, and I kept overthinking myself into silence -- too many ideas, not enough action. Yaad Content Studio removes that friction. A personal content planning and logging tool for YouTube, TikTok, and Instagram -- with a planner tab for capturing ideas as they come, a log for tracking videos as I make them, and built-in hook ideas so I never stare at a blank screen again. Built because the creator in me needed the same thing the builder in me always builds: a system that works.</p>
+        <div class="project-pills">
+          <span class="project-pill" style="background:#f0faf5;color:#00a846;border-color:#b8e8cc">Personal Tool</span>
+          <span class="project-pill" style="background:#f0faf5;color:#00a846;border-color:#b8e8cc">Content Creation</span>
+          <span class="project-pill purple">AI-Built</span>
+          <span class="project-pill pink">Built for Me</span>
+        </div>
+      </div>
+      <div class="project-visual" style="background:linear-gradient(135deg,#f0faf5,#1a1a1a10)">
+        <div class="project-mockup">
+          <div class="mockup-bar" style="background:#111">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <span class="mockup-title">YAAD CONTENT STUDIO 🇯🇲</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#00a846"></div>
+              <span class="mockup-row-text">Day in my life vlog</span>
+              <span class="mockup-row-badge" style="background:#f0faf5;color:#00a846;border:1px solid #b8e8cc">📅 Planned</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#e0457b"></div>
+              <span class="mockup-row-text">My morning routine</span>
+              <span class="mockup-row-badge" style="background:#FFF0F7;color:#e0457b;border:1px solid #FFB3D0">✅ Logged</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#0099cc"></div>
+              <span class="mockup-row-text">Hook idea: "Nobody tells you..."</span>
+              <span class="mockup-row-badge" style="background:#f0f8ff;color:#0099cc;border:1px solid #b8d8e8">💡 Idea</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-row-dot" style="background:#c49a00"></div>
+              <span class="mockup-row-text">Building Clarifi from scratch</span>
+              <span class="mockup-row-badge" style="background:#FFFBF0;color:#C89900;border:1px solid #FFD60A">🎬 YouTube</span>
+            </div>
+            <div class="mockup-stat-row">
+              <div class="mockup-stat" style="background:#f0faf5;border-color:#b8e8cc"><div class="mockup-stat-num" style="color:#00a846">12</div><div class="mockup-stat-lbl">Ideas</div></div>
+              <div class="mockup-stat" style="background:#FFF0F7;border-color:#FFB3D0"><div class="mockup-stat-num" style="color:#e0457b">4</div><div class="mockup-stat-lbl">Logged</div></div>
+              <div class="mockup-stat" style="background:#f0f8ff;border-color:#b8d8e8"><div class="mockup-stat-num" style="color:#0099cc">3</div><div class="mockup-stat-lbl">Planned</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -851,9 +971,9 @@ footer span { color: var(--pink-mid); }
     <ellipse cx="86" cy="50" rx="18" ry="10" fill="#FF3D7F"/>
     <circle cx="50" cy="50" r="13" fill="#FFD60A"/>
   </svg>
-  <div class="section-label">Always Been Building</div>
-  <h2 class="section-title">7 years of <em>creating things</em></h2>
-  <p class="section-intro">Long before I had a name for it, I was building — products, brands, systems, businesses, and audiences. This isn't a recent thing. It's who I've always been.</p>
+  <div class="section-label">Born a Creator. Became a Builder.</div>
+  <h2 class="section-title">It all <em>counts.</em></h2>
+  <p class="section-intro">Long before I had a name for it, I was creating and building -- words, brands, products, systems, and audiences. The creativity was always the root. The building grew from it. This is the full story.</p>
 
   <div class="timeline">
 
@@ -927,7 +1047,7 @@ footer span { color: var(--pink-mid); }
         <div class="timeline-year" style="color:var(--orange)">2023</div>
         <div class="timeline-title">Design Your Dream Life</div>
         <div class="timeline-sub" style="color:rgba(251,133,0,0.7)">Digital Guidebook · Gumroad</div>
-        <p class="timeline-desc">Self-published a guided vision journal for self-reflection, clarity, and personal growth. Sold independently on Gumroad. The project that unlocked the creative identity and proved that words, too, are a product.</p>
+        <p class="timeline-desc">Self-published a guided vision journal for self-reflection, clarity, and personal growth. Sold independently on Gumroad. The project that unlocked the creative identity and proved to me that words, too, are creation.</p>
         <div class="timeline-tags">
           <span class="timeline-tag">Digital Product</span>
           <span class="timeline-tag">Self-Development</span>
@@ -964,6 +1084,21 @@ footer span { color: var(--pink-mid); }
           <span class="timeline-tag">Firebase</span>
           <span class="timeline-tag">Fintech</span>
           <span class="timeline-tag">Live Product</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:#00a846;color:#fff">🎬</div>
+      <div>
+        <div class="timeline-year" style="color:#00a846">2026</div>
+        <div class="timeline-title">Yaad Content Studio 🇯🇲</div>
+        <div class="timeline-sub" style="color:rgba(0,168,70,0.7)">Personal Tool · Content Planning</div>
+        <p class="timeline-desc">A personal content planning and logging tool built to solve my own creative paralysis. Hook ideas, video planning, content logging across YouTube, TikTok, and Instagram. Built because the creator in me needed the same thing the builder in me always builds: a system that works.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Personal Tool</span>
+          <span class="timeline-tag">Content Creation</span>
+          <span class="timeline-tag">AI-Built</span>
         </div>
       </div>
     </div>
@@ -1040,18 +1175,27 @@ footer span { color: var(--pink-mid); }
     <circle cx="45" cy="45" r="12" fill="#FFD60A"/>
   </svg>
   <div class="section-label" style="color:var(--pink)">Let's Connect</div>
-  <h2 class="section-title reveal">I'm building. <em>Are you?</em></h2>
-  <p class="section-intro reveal">I'm growing Loggd and Clarifi, exploring new ideas, and open to the right role or collaboration where I can bring this energy to something real. If you're a builder, a founder, or someone who sees what this could become — let's talk.</p>
+  <h2 class="section-title reveal">I'm building and creating. <em>Are you?</em></h2>
+  <p class="section-intro reveal">I'm creating, building, and growing -- Loggd, Clarifi, and whatever comes next. Open to the right role or collaboration where I can bring this energy to something real. If you're a creator, a builder, a founder, or someone who sees what this could become -- let's talk.</p>
   <div class="contact-links reveal">
     <a href="mailto:hello@yolandamcleod.com" class="btn-primary">Send an Email →</a>
   </div>
 </section>
 
 <footer>
-  Built with intention, flowers, and a refusal to wait for permission 🌸 by <span>Yolanda McLeod</span> · South Florida · 2026
+  Created with intention, built with purpose, and full of flowers 🌸 by <span>Yolanda McLeod</span> · South Florida · 2026
 </footer>
 
 <script>
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.getElementById('nav-links').classList.remove('open');
+  });
+});
+
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
